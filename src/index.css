@@ -1,0 +1,696 @@
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ═══════════════════════════════
+   LIGHT MODE (default)
+   Enhanced color palette with better contrast
+═══════════════════════════════ */
+:root,
+[data-theme="light"] {
+    /* Backgrounds - Improved depth */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --bg-input: #ffffff;
+    --bg-muted: #f1f5f9;
+    --bg-muted2: #e8edf5;
+
+    /* Text - Enhanced contrast for readability */
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-faint: #94a3b8;
+
+    /* Borders */
+    --border-color: #e2e8f0;
+    --border-focus: #00a651;
+
+    /* Shadows - Softer, more modern */
+    --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-card-hover:
+        0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-button: 0 4px 14px rgba(0, 166, 81, 0.25);
+
+    /* Navigation */
+    --nav-bg: rgba(30, 58, 138, 0.95);
+    --footer-bg: #0f172a;
+
+    /* Brand Colors - Refined */
+    --green: #00a651;
+    --green-light: #10b981;
+    --green-dark: #008f45;
+    --orange: #ff6b00;
+    --orange-light: #f97316;
+    --navy: #1e3a8a;
+    --navy-light: #3b82f6;
+    --white: #ffffff;
+
+    /* Section backgrounds */
+    --pricing-bg: #ffffff;
+    --faq-bg: #ffffff;
+    --section-alt: #f8fafc;
+    --section-white: #ffffff;
+
+    /* Badges - Better contrast */
+    --badge-green-bg: rgba(0, 166, 81, 0.1);
+    --badge-green-text: #007a3d;
+    --badge-orange-bg: rgba(255, 107, 0, 0.1);
+    --badge-orange-text: #ea580c;
+    --badge-blue-bg: rgba(30, 58, 138, 0.1);
+    --badge-blue-text: #1e40af;
+
+    /* Progress & UI */
+    --progress-track: #e2e8f0;
+    --testimonial-bg: #ffffff;
+
+    /* Theme toggle */
+    --toggle-bg: #cbd5e1;
+    --toggle-knob: #ffffff;
+    --overlay-info: rgba(30, 58, 138, 0.03);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(
+        135deg,
+        #0f2460 0%,
+        #1e3a8a 35%,
+        #00622f 100%
+    );
+    --gradient-green: linear-gradient(135deg, #00a651 0%, #10b981 100%);
+    --gradient-cta: linear-gradient(135deg, #00a651 0%, #005c30 100%);
+}
+
+/* ═══════════════════════════════
+   DARK MODE
+   Enhanced for better depth and readability
+═══════════════════════════════ */
+[data-theme="dark"] {
+    /* Backgrounds - Richer dark tones */
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --bg-input: #1e293b;
+    --bg-muted: #1e293b;
+    --bg-muted2: #334155;
+
+    /* Text - Optimized for dark mode readability */
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-faint: #64748b;
+
+    /* Borders - Subtle in dark mode */
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-focus: #00a651;
+
+    /* Shadows - Enhanced for dark mode */
+    --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
+    --shadow-card-hover:
+        0 14px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.35);
+    --shadow-button: 0 4px 14px rgba(0, 166, 81, 0.35);
+
+    /* Navigation */
+    --nav-bg: rgba(10, 14, 26, 0.95);
+    --footer-bg: #05080f;
+
+    /* Brand Colors - Brighter for dark mode */
+    --green: #34d399;
+    --green-light: #6ee7b7;
+    --green-dark: #059669;
+    --orange: #fb923c;
+    --orange-light: #fdba74;
+    --navy: #60a5fa;
+    --navy-light: #93c5fd;
+    --white: #1e293b;
+
+    /* Section backgrounds */
+    --pricing-bg: #1e293b;
+    --faq-bg: #1e293b;
+    --section-alt: #0a0e1a;
+    --section-white: #111827;
+
+    /* Badges - Enhanced contrast */
+    --badge-green-bg: rgba(52, 211, 153, 0.15);
+    --badge-green-text: #6ee7b7;
+    --badge-orange-bg: rgba(251, 146, 60, 0.15);
+    --badge-orange-text: #fdba74;
+    --badge-blue-bg: rgba(96, 165, 250, 0.15);
+    --badge-blue-text: #93c5fd;
+
+    /* Progress & UI */
+    --progress-track: rgba(255, 255, 255, 0.1);
+    --testimonial-bg: #1e293b;
+
+    /* Theme toggle */
+    --toggle-bg: #00a651;
+    --toggle-knob: #ffffff;
+    --overlay-info: rgba(255, 255, 255, 0.02);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(
+        135deg,
+        #080c18 0%,
+        #0f1a3a 40%,
+        #003d20 100%
+    );
+    --gradient-green: linear-gradient(135deg, #059669 0%, #34d399 100%);
+    --gradient-cta: linear-gradient(135deg, #059669 0%, #064e3b 100%);
+}
+
+/* ═══════════════════════════════
+   BASE STYLES
+═══════════════════════════════ */
+body {
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Poppins",
+        sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    line-height: 1.6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--green);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--green-dark);
+}
+
+.font-poppins {
+    font-family: "Poppins", sans-serif;
+}
+
+/* ═══════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════ */
+.theme-toggle {
+    width: 52px;
+    height: 28px;
+    border-radius: 14px;
+    background: var(--toggle-bg);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+.theme-toggle-knob {
+    position: absolute;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--toggle-knob);
+    transition:
+        left 0.3s ease,
+        transform 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+/* ═══════════════════════════════
+   CARDS - Enhanced with better shadows
+═══════════════════════════════ */
+.card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+    background: var(--bg-card-hover);
+    border-color: var(--green);
+}
+
+.pricing-card {
+    background: var(--pricing-bg);
+    border-radius: 20px;
+    padding: 36px 28px;
+    box-shadow: var(--shadow-card);
+    border: 2px solid var(--border-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--green);
+}
+
+.testimonial-card {
+    background: var(--testimonial-bg);
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-color);
+    position: relative;
+    transition: all 0.3s ease;
+}
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    font-size: 80px;
+    color: var(--green);
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.08;
+}
+
+/* ═══════════════════════════════
+   INPUTS - Better focus states
+═══════════════════════════════ */
+.input-field {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: "Inter", sans-serif;
+    outline: none;
+    transition: all 0.2s ease;
+    background: var(--bg-input);
+    color: var(--text-primary);
+}
+.input-field:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 4px rgba(0, 166, 81, 0.12);
+    transform: translateY(-1px);
+}
+.input-field::placeholder {
+    color: var(--text-faint);
+}
+.input-field option {
+    background: var(--bg-input);
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════
+   BUTTONS - Enhanced with better hover states
+═══════════════════════════════ */
+.btn-primary {
+    background: var(--gradient-green);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: var(--shadow-button);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 166, 81, 0.4);
+    filter: brightness(1.05);
+}
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-orange {
+    background: linear-gradient(135deg, #ff6b00 0%, #f97316 100%);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(255, 107, 0, 0.3);
+}
+.btn-orange:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+}
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════
+   SECTION HELPERS - Better typography
+═══════════════════════════════ */
+.section-title {
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    transition: color 0.3s;
+    letter-spacing: -0.02em;
+}
+.section-subtitle {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 400;
+    transition: color 0.3s;
+    max-width: 65ch;
+}
+
+/* ═══════════════════════════════
+   BADGES - Enhanced
+═══════════════════════════════ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.badge-green {
+    background: var(--badge-green-bg);
+    color: var(--badge-green-text);
+}
+.badge-orange {
+    background: var(--badge-orange-bg);
+    color: var(--badge-orange-text);
+}
+.badge-blue {
+    background: var(--badge-blue-bg);
+    color: var(--badge-blue-text);
+}
+
+/* ═══════════════════════════════
+   NAVBAR LINK
+═══════════════════════════════ */
+.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.2s;
+    position: relative;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--green);
+    transition: width 0.3s;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+.nav-link:hover {
+    color: var(--green);
+}
+
+/* ═══════════════════════════════
+   SIDEBAR
+═══════════════════════════════ */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+}
+.sidebar-link:hover,
+.sidebar-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+.sidebar-link.active {
+    background: rgba(0, 166, 81, 0.2);
+    color: var(--green);
+}
+
+/* ═══════════════════════════════
+   PROGRESS BAR - Enhanced
+═══════════════════════════════ */
+.progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--progress-track);
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--green), var(--green-light));
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════
+   STAT COUNTER
+═══════════════════════════════ */
+.stat-counter {
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+/* ═══════════════════════════════
+   ANIMATIONS - Smoother
+═══════════════════════════════ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes pulse-green {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(0, 166, 81, 0);
+    }
+}
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes chatBounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+@keyframes chatPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+.animate-pulse-green {
+    animation: pulse-green 2s infinite;
+}
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+.animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+}
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+}
+.animate-slideDown {
+    animation: slideDown 0.3s ease-out forwards;
+}
+.animate-chatPop {
+    animation: chatPop 0.3s ease-out forwards;
+}
+
+/* Chatbot scrollbar */
+.chatbot-messages::-webkit-scrollbar {
+    width: 4px;
+}
+.chatbot-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+.chatbot-messages::-webkit-scrollbar-thumb {
+    background: rgba(0, 166, 81, 0.3);
+    border-radius: 2px;
+}
+
+/* ═══════════════════════════════
+   RESPONSIVE UTILITIES
+═══════════════════════════════ */
+@media (max-width: 768px) {
+    .card {
+        padding: 24px;
+        border-radius: 16px;
+    }
+    .pricing-card {
+        padding: 28px 20px;
+    }
+    .section-title {
+        font-size: clamp(24px, 6vw, 36px);
+    }
+    .section-subtitle {
+        font-size: 15px;
+    }
+}
+
+/* ═══════════════════════════════
+   ACCESSIBILITY
+═══════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+:focus-visible {
+    outline: 3px solid var(--green);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000;
+    }
+}
