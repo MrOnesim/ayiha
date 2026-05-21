@@ -1,18 +1,14 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Zap } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
-interface NavbarProps {
-    currentPage: string;
-    setCurrentPage: (page: string) => void;
-}
-
 const navItems = [
-    { id: "home", label: "Accueil" },
-    { id: "offers", label: "Offres" },
-    { id: "about", label: "À Propos" },
-    { id: "join", label: "Rejoindre" },
-    { id: "contact", label: "Contact" },
+    { path: "/", id: "home", label: "Accueil" },
+    { path: "/offers", id: "offers", label: "Offres" },
+    { path: "/about", id: "about", label: "À Propos" },
+    { path: "/join", id: "join", label: "Rejoindre" },
+    { path: "/contact", id: "contact", label: "Contact" },
 ];
 
 function DarkToggle() {
@@ -34,7 +30,8 @@ function DarkToggle() {
     );
 }
 
-export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
+export default function Navbar() {
+    const { pathname } = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const { dark } = useTheme();
@@ -45,8 +42,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    const navigate = (page: string) => {
-        setCurrentPage(page);
+    const handleLinkClick = () => {
         setMenuOpen(false);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -74,24 +70,12 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     {/* Logo */}
-                    <button
-                        onClick={() => navigate("home")}
-                        className="flex items-center gap-2.5 group"
-                        style={{
-                            background: "none",
-                            border: "none",
-                            cursor: "pointer",
-                            padding: 0,
-                        }}
+                    <Link
+                        to="/"
+                        onClick={handleLinkClick}
+                        className="flex items-center gap-2.5 group no-underline"
                     >
-                        <div
-                            className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-105"
-                            style={{
-                                background: "rgba(0, 166, 81, 0.15)",
-                                border: "2px solid #00A651",
-                                boxShadow: "0 0 20px rgba(0, 166, 81, 0.2)",
-                            }}
-                        >
+                        <div className="logo-badge group-hover:scale-105">
                             <Zap size={20} color="#00A651" fill="#00A651" />
                         </div>
                         <div className="flex flex-col leading-tight">
@@ -111,133 +95,39 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                                 BEN/AFRICA
                             </span>
                         </div>
-                    </button>
+                    </Link>
 
                     {/* Desktop Nav */}
-                    <div className="hidden md:flex items-center gap-1">
+                    <div className="hidden md:flex items-center gap-1 nav-links">
                         {navItems.map((item) => (
-                            <button
+                            <Link
                                 key={item.id}
-                                onClick={() => navigate(item.id)}
-                                style={{
-                                    color:
-                                        currentPage === item.id
-                                            ? "#00A651"
-                                            : "rgba(255, 255, 255, 0.8)",
-                                    background: "none",
-                                    border: "none",
-                                    cursor: "pointer",
-                                    fontWeight:
-                                        currentPage === item.id ? 600 : 500,
-                                    fontSize: "14px",
-                                    fontFamily: "Inter, sans-serif",
-                                    padding: "8px 14px",
-                                    borderRadius: "8px",
-                                    transition: "all 0.2s ease",
-                                }}
-                                onMouseEnter={(e) => {
-                                    if (currentPage !== item.id) {
-                                        (
-                                            e.currentTarget as HTMLElement
-                                        ).style.color = "#00A651";
-                                        (
-                                            e.currentTarget as HTMLElement
-                                        ).style.background =
-                                            "rgba(255, 255, 255, 0.08)";
-                                    }
-                                }}
-                                onMouseLeave={(e) => {
-                                    if (currentPage !== item.id) {
-                                        (
-                                            e.currentTarget as HTMLElement
-                                        ).style.color =
-                                            "rgba(255, 255, 255, 0.8)";
-                                        (
-                                            e.currentTarget as HTMLElement
-                                        ).style.background = "transparent";
-                                    }
-                                }}
+                                to={item.path}
+                                onClick={handleLinkClick}
+                                className={`nav-button ${pathname === item.path ? "active" : ""}`}
                             >
                                 {item.label}
-                            </button>
+                            </Link>
                         ))}
                     </div>
 
                     {/* Right side */}
                     <div className="hidden md:flex items-center gap-3">
                         <DarkToggle />
-                        <button
-                            onClick={() => navigate("relay")}
-                            style={{
-                                background: "transparent",
-                                color: "white",
-                                padding: "10px 20px",
-                                borderRadius: "12px",
-                                fontWeight: 600,
-                                fontSize: "13px",
-                                border: "2px solid rgba(255, 255, 255, 0.3)",
-                                cursor: "pointer",
-                                transition: "all 0.2s ease",
-                                fontFamily: "Inter, sans-serif",
-                            }}
-                            onMouseEnter={(e) => {
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.background = "rgba(255, 255, 255, 0.1)";
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.borderColor =
-                                    "rgba(255, 255, 255, 0.5)";
-                            }}
-                            onMouseLeave={(e) => {
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.background = "transparent";
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.borderColor =
-                                    "rgba(255, 255, 255, 0.3)";
-                            }}
+                        <Link
+                            to="/relay"
+                            onClick={handleLinkClick}
+                            className="nav-cta ghost no-underline flex items-center justify-center"
                         >
                             Espace Relais
-                        </button>
-                        <button
-                            onClick={() => navigate("ceo")}
-                            style={{
-                                background:
-                                    "linear-gradient(135deg, #00A651, #10b981)",
-                                color: "white",
-                                padding: "10px 20px",
-                                borderRadius: "12px",
-                                fontWeight: 600,
-                                fontSize: "13px",
-                                border: "none",
-                                cursor: "pointer",
-                                transition: "all 0.2s ease",
-                                fontFamily: "Inter, sans-serif",
-                                boxShadow: "0 4px 14px rgba(0, 166, 81, 0.3)",
-                            }}
-                            onMouseEnter={(e) => {
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.transform = "translateY(-2px)";
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.boxShadow =
-                                    "0 6px 20px rgba(0, 166, 81, 0.4)";
-                            }}
-                            onMouseLeave={(e) => {
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.transform = "translateY(0)";
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.boxShadow =
-                                    "0 4px 14px rgba(0, 166, 81, 0.3)";
-                            }}
+                        </Link>
+                        <Link
+                            to="/ceo"
+                            onClick={handleLinkClick}
+                            className="nav-cta primary no-underline flex items-center justify-center"
                         >
                             CEO
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Mobile hamburger */}
@@ -338,12 +228,13 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                     </div>
 
                     {navItems.map((item) => (
-                        <button
+                        <Link
                             key={item.id}
-                            onClick={() => navigate(item.id)}
+                            to={item.path}
+                            onClick={handleLinkClick}
                             style={{
                                 color:
-                                    currentPage === item.id
+                                    pathname === item.path
                                         ? "#00A651"
                                         : "rgba(255, 255, 255, 0.85)",
                                 background: "none",
@@ -354,9 +245,10 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                                 fontWeight: 700,
                                 transition: "all 0.2s ease",
                                 padding: "4px 0",
+                                textDecoration: "none",
                             }}
                             onMouseEnter={(e) => {
-                                if (currentPage !== item.id) {
+                                if (pathname !== item.path) {
                                     (
                                         e.currentTarget as HTMLElement
                                     ).style.color = "#00A651";
@@ -366,7 +258,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                                 }
                             }}
                             onMouseLeave={(e) => {
-                                if (currentPage !== item.id) {
+                                if (pathname !== item.path) {
                                     (
                                         e.currentTarget as HTMLElement
                                     ).style.color = "rgba(255, 255, 255, 0.85)";
@@ -377,12 +269,14 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                             }}
                         >
                             {item.label}
-                        </button>
+                        </Link>
                     ))}
 
                     <div className="flex flex-col gap-3 w-full max-w-xs mt-4 px-8">
-                        <button
-                            onClick={() => navigate("relay")}
+                        <Link
+                            to="/relay"
+                            onClick={handleLinkClick}
+                            className="text-center no-underline"
                             style={{
                                 background: "transparent",
                                 color: "white",
@@ -415,9 +309,11 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                             }}
                         >
                             Espace Relais
-                        </button>
-                        <button
-                            onClick={() => navigate("ceo")}
+                        </Link>
+                        <Link
+                            to="/ceo"
+                            onClick={handleLinkClick}
+                            className="text-center no-underline"
                             style={{
                                 background:
                                     "linear-gradient(135deg, #00A651, #10b981)",
@@ -451,7 +347,7 @@ export default function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                             }}
                         >
                             Espace CEO
-                        </button>
+                        </Link>
                     </div>
                 </div>
             )}

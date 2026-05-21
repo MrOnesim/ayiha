@@ -14,11 +14,8 @@ import {
     Clock,
     MessageCircle,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-
-interface HomePageProps {
-    setCurrentPage: (page: string) => void;
-}
 
 function AnimatedCounter({
     end,
@@ -63,12 +60,13 @@ function AnimatedCounter({
     );
 }
 
-export default function HomePage({ setCurrentPage }: HomePageProps) {
+export default function HomePage() {
     const [testimonialIdx, setTestimonialIdx] = useState(0);
     const { dark } = useTheme();
+    const navigate = useNavigate();
 
-    const navigate = (page: string) => {
-        setCurrentPage(page);
+    const handleNavigate = (path: string) => {
+        navigate(path);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
@@ -224,7 +222,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                     }}
                 />
 
-                <div className="relative z-10 max-w-6xl mx-auto px-4 py-32 text-center">
+                <div className="relative z-10 container py-32 text-center">
                     <div
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 animate-fadeInUp"
                         style={{
@@ -275,7 +273,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                         style={{ animationDelay: "0.3s" }}
                     >
                         <button
-                            onClick={() => navigate("offers")}
+                            onClick={() => handleNavigate("/offers")}
                             className="btn-primary"
                             style={{
                                 padding: "16px 36px",
@@ -340,7 +338,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                 style={{ background: dark ? "#0a0f1e" : "#1E3A8A" }}
                 className="py-20"
             >
-                <div className="max-w-6xl mx-auto px-4">
+                <div className="container">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
                             { end: 250, suffix: "+", label: "Relais actifs" },
@@ -382,7 +380,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
 
             {/* ─── HOW IT WORKS ─── */}
             <section className="py-24" style={{ background: sectionAlt }}>
-                <div className="max-w-6xl mx-auto px-4">
+                <div className="container">
                     <div className="text-center mb-16">
                         <div className="badge badge-green mb-4">
                             <Zap size={14} /> Comment ça marche
@@ -505,7 +503,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                                 {plan.featured && (
                                     <div className="absolute -top-4 left-0 right-0 flex justify-center">
                                         <span
-                                            className="px-5 py-1.5 rounded-full text-xs font-bold text-white"
+                                            className="px-5 py-4 rounded-full text-xs font-bold text-white"
                                             style={{
                                                 background: plan.color,
                                                 boxShadow:
@@ -581,7 +579,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                     </div>
                     <div className="text-center mt-12">
                         <button
-                            onClick={() => navigate("offers")}
+                            onClick={() => handleNavigate("/offers")}
                             className="btn-primary"
                             style={{ padding: "14px 36px" }}
                         >
@@ -734,7 +732,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                                     ))}
                                 </div>
                                 <button
-                                    onClick={() => navigate("about")}
+                                    onClick={() => handleNavigate("/about")}
                                     className="mt-8 w-full py-3 rounded-xl font-semibold text-sm text-white"
                                     style={{
                                         background: "rgba(255,255,255,0.15)",
@@ -901,7 +899,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => navigate("join")}
+                            onClick={() => handleNavigate("/join")}
                             className="btn-primary"
                             style={{ padding: "16px 36px", fontSize: "16px" }}
                         >
@@ -1032,7 +1030,7 @@ export default function HomePage({ setCurrentPage }: HomePageProps) {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => navigate("offers")}
+                            onClick={() => handleNavigate("/offers")}
                             className="font-semibold text-base py-4 px-8 rounded-xl"
                             style={{
                                 background: "white",
