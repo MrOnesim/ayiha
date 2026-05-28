@@ -5,19 +5,21 @@ import {
     CheckCircle2,
     Clock,
     Star,
-} from "lucide-react";
-import { mockStats } from "../../data/ceoData";
+} from 'lucide-react';
+import { mockStats } from '../../data/ceoData';
 
 interface CEODashboardTabProps {
     setActiveTab: (tab: string) => void;
 }
 
-export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) {
+export default function CEODashboardTab({
+    setActiveTab,
+}: CEODashboardTabProps) {
     return (
         <div className="space-y-6">
             <h2
                 className="font-poppins font-bold text-xl"
-                style={{ color: "white" }}
+                style={{ color: 'white' }}
             >
                 Vue d'ensemble — Mai 2026
             </h2>
@@ -25,41 +27,41 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
                     {
-                        label: "Total Relais",
+                        label: 'Total Relais',
                         value: mockStats.totalRelais,
-                        color: "#00A651",
+                        color: '#00A651',
                         icon: Users,
                     },
                     {
-                        label: "Clients actifs",
+                        label: 'Clients actifs',
                         value: mockStats.activeClients,
-                        color: "#FF6B00",
+                        color: '#FF6B00',
                         icon: TrendingUp,
                     },
                     {
-                        label: "CA Mensuel",
+                        label: 'CA Mensuel',
                         value: `${(mockStats.monthlyRevenue / 1000).toFixed(0)}K`,
-                        suffix: "FCFA",
-                        color: "#00A651",
+                        suffix: 'FCFA',
+                        color: '#00A651',
                         icon: DollarSign,
                     },
                     {
-                        label: "Budget Relais",
+                        label: 'Budget Relais',
                         value: `${(mockStats.relayBudget / 1000).toFixed(0)}K`,
-                        suffix: "FCFA",
-                        color: "#d97706",
+                        suffix: 'FCFA',
+                        color: '#d97706',
                         icon: Star,
                     },
                     {
-                        label: "En attente",
+                        label: 'En attente',
                         value: mockStats.pendingScreenshots,
-                        color: "#ef4444",
+                        color: '#ef4444',
                         icon: Clock,
                     },
                     {
                         label: "Validés aujourd'hui",
                         value: mockStats.validatedToday,
-                        color: "#00A651",
+                        color: '#00A651',
                         icon: CheckCircle2,
                     },
                 ].map((s) => {
@@ -69,8 +71,8 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                             key={s.label}
                             className="p-4 rounded-2xl text-center"
                             style={{
-                                background: "#1a1a1a",
-                                border: "1px solid rgba(255,255,255,0.08)",
+                                background: '#1a1a1a',
+                                border: '1px solid rgba(255,255,255,0.08)',
                             }}
                         >
                             <div
@@ -94,7 +96,7 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                                 <div
                                     className="text-xs"
                                     style={{
-                                        color: "rgba(255,255,255,0.4)",
+                                        color: 'rgba(255,255,255,0.4)',
                                     }}
                                 >
                                     {s.suffix}
@@ -103,7 +105,7 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                             <div
                                 className="text-xs mt-1"
                                 style={{
-                                    color: "rgba(255,255,255,0.4)",
+                                    color: 'rgba(255,255,255,0.4)',
                                 }}
                             >
                                 {s.label}
@@ -117,24 +119,24 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
             <div
                 className="p-6 rounded-2xl"
                 style={{
-                    background: "#1a1a1a",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    background: '#1a1a1a',
+                    border: '1px solid rgba(255,255,255,0.08)',
                 }}
             >
                 <h3
                     className="font-bold text-base mb-5"
-                    style={{ color: "white" }}
+                    style={{ color: 'white' }}
                 >
                     Évolution du CA (6 derniers mois)
                 </h3>
                 <div className="flex items-end gap-3 h-32">
                     {[
-                        { month: "Déc", pct: 40 },
-                        { month: "Jan", pct: 55 },
-                        { month: "Fév", pct: 48 },
-                        { month: "Mar", pct: 65 },
-                        { month: "Avr", pct: 75 },
-                        { month: "Mai", pct: 92 },
+                        { month: 'Déc', pct: 40 },
+                        { month: 'Jan', pct: 55 },
+                        { month: 'Fév', pct: 48 },
+                        { month: 'Mar', pct: 65 },
+                        { month: 'Avr', pct: 75 },
+                        { month: 'Mai', pct: 92 },
                     ].map((d) => (
                         <div
                             key={d.month}
@@ -142,7 +144,7 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                         >
                             <div
                                 className="text-xs font-bold"
-                                style={{ color: "#00A651" }}
+                                style={{ color: '#00A651' }}
                             >
                                 {d.pct}%
                             </div>
@@ -151,16 +153,16 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                                 style={{
                                     height: `${d.pct}%`,
                                     background:
-                                        d.month === "Mai"
-                                            ? "linear-gradient(180deg, #00A651, #005c30)"
-                                            : "rgba(0,166,81,0.3)",
-                                    minHeight: "8px",
+                                        d.month === 'Mai'
+                                            ? 'linear-gradient(180deg, #00A651, #005c30)'
+                                            : 'rgba(0,166,81,0.3)',
+                                    minHeight: '8px',
                                 }}
                             />
                             <div
                                 className="text-xs"
                                 style={{
-                                    color: "rgba(255,255,255,0.4)",
+                                    color: 'rgba(255,255,255,0.4)',
                                 }}
                             >
                                 {d.month}
@@ -175,32 +177,32 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                 <div
                     className="p-5 rounded-2xl"
                     style={{
-                        background: "rgba(239,68,68,0.08)",
-                        border: "1px solid rgba(239,68,68,0.2)",
+                        background: 'rgba(239,68,68,0.08)',
+                        border: '1px solid rgba(239,68,68,0.2)',
                     }}
                 >
                     <h4
                         className="font-bold text-sm mb-3"
-                        style={{ color: "#ef4444" }}
+                        style={{ color: '#ef4444' }}
                     >
-                        ⚠️ Alertes ({mockStats.pendingScreenshots})
+                        Alertes ({mockStats.pendingScreenshots})
                     </h4>
                     <p
                         className="text-sm"
-                        style={{ color: "rgba(255,255,255,0.6)" }}
+                        style={{ color: 'rgba(255,255,255,0.6)' }}
                     >
-                        {mockStats.pendingScreenshots} screenshots
-                        en attente de validation. Vérifiez les
-                        soumissions des relais avant la fin du mois.
+                        {mockStats.pendingScreenshots} screenshots en attente de
+                        validation. Vérifiez les soumissions des relais avant la
+                        fin du mois.
                     </p>
                     <button
-                        onClick={() => setActiveTab("screenshots")}
+                        onClick={() => setActiveTab('screenshots')}
                         className="mt-4 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
                         style={{
-                            background: "rgba(239,68,68,0.15)",
-                            color: "#ef4444",
-                            border: "none",
-                            cursor: "pointer",
+                            background: 'rgba(239,68,68,0.15)',
+                            color: '#ef4444',
+                            border: 'none',
+                            cursor: 'pointer',
                         }}
                     >
                         Voir les screenshots →
@@ -209,32 +211,31 @@ export default function CEODashboardTab({ setActiveTab }: CEODashboardTabProps) 
                 <div
                     className="p-5 rounded-2xl"
                     style={{
-                        background: "rgba(0,166,81,0.08)",
-                        border: "1px solid rgba(0,166,81,0.2)",
+                        background: 'rgba(0,166,81,0.08)',
+                        border: '1px solid rgba(0,166,81,0.2)',
                     }}
                 >
                     <h4
                         className="font-bold text-sm mb-3"
-                        style={{ color: "#00A651" }}
+                        style={{ color: '#00A651' }}
                     >
-                        💰 Budget Relais Disponible
+                        Budget Relais Disponible
                     </h4>
                     <p
                         className="text-sm"
-                        style={{ color: "rgba(255,255,255,0.6)" }}
+                        style={{ color: 'rgba(255,255,255,0.6)' }}
                     >
-                        {mockStats.relayBudget.toLocaleString()}{" "}
-                        FCFA disponibles pour les paiements MoMo de
-                        fin de mois.
+                        {mockStats.relayBudget.toLocaleString()} FCFA
+                        disponibles pour les paiements MoMo de fin de mois.
                     </p>
                     <button
-                        onClick={() => setActiveTab("bilan")}
+                        onClick={() => setActiveTab('bilan')}
                         className="mt-4 text-sm font-semibold px-4 py-2 rounded-lg transition-all"
                         style={{
-                            background: "rgba(0,166,81,0.15)",
-                            color: "#00A651",
-                            border: "none",
-                            cursor: "pointer",
+                            background: 'rgba(0,166,81,0.15)',
+                            color: '#00A651',
+                            border: 'none',
+                            cursor: 'pointer',
                         }}
                     >
                         Générer le bilan →
