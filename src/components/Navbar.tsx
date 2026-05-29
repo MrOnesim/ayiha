@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X, Zap, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const navItems = [
@@ -26,7 +26,14 @@ function DarkToggle() {
                 className="theme-toggle-knob"
                 style={{ left: dark ? '28px' : '4px' }}
             >
-                {dark ? '🌙' : '☀️'}
+                {dark ? (
+                    <Moon
+                        size={16}
+                        className="bg-green-900/90 rounded-full p-0.5"
+                    />
+                ) : (
+                    <Sun size={16} />
+                )}
             </span>
         </button>
     );

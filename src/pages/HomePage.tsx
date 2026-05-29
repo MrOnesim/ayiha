@@ -284,7 +284,7 @@ export default function HomePage() {
                             Voir nos offres <ArrowRight size={18} />
                         </button>
                         <a
-                            href="https://wa.me/22901562020"
+                            href="https://wa.me/2290156202023"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-outline"
@@ -500,20 +500,6 @@ export default function HomePage() {
                                     position: 'relative',
                                 }}
                             >
-                                {plan.featured && (
-                                    <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                                        <span
-                                            className="px-5 py-4 rounded-full text-xs font-bold text-white"
-                                            style={{
-                                                background: plan.color,
-                                                boxShadow:
-                                                    '0 4px 12px rgba(0,166,81,0.3)',
-                                            }}
-                                        >
-                                            ⭐ PLUS POPULAIRE
-                                        </span>
-                                    </div>
-                                )}
                                 <div className="text-center mb-6">
                                     <span
                                         className="font-poppins font-black text-lg"
