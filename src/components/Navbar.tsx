@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, Moon, Sun } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 
 const navItems = [
@@ -22,9 +22,18 @@ function DarkToggle() {
         >
             <span
                 className="theme-toggle-knob"
-                style={{ left: dark ? "28px" : "4px" }}
+                style={{
+                    left: dark ? "28px" : "4px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
             >
-                {dark ? "🌙" : "☀️"}
+                {dark ? (
+                    <Moon size={12} color="#fcd34d" fill="#fcd34d" />
+                ) : (
+                    <Sun size={12} color="#f59e0b" fill="#f59e0b" />
+                )}
             </span>
         </button>
     );
@@ -52,8 +61,8 @@ export default function Navbar() {
             ? "rgba(10, 14, 26, 0.98)"
             : "rgba(10, 14, 26, 0.85)"
         : scrolled
-          ? "rgba(30, 58, 138, 0.98)"
-          : "rgba(30, 58, 138, 0.85)";
+            ? "rgba(30, 58, 138, 0.98)"
+            : "rgba(30, 58, 138, 0.85)";
 
     return (
         <>
@@ -86,13 +95,13 @@ export default function Navbar() {
                                 AYIHA BOOST
                             </span>
                             <span
-                                className="text-xs font-bold tracking-widest"
+                                className="text-xs font-bold tracking-widest uppercase"
                                 style={{
                                     color: "#93c5fd",
                                     letterSpacing: "0.15em",
                                 }}
                             >
-                                BEN/AFRICA
+                                Benin / Africa
                             </span>
                         </div>
                     </Link>
@@ -144,14 +153,14 @@ export default function Navbar() {
                                 transition: "background 0.2s",
                             }}
                             onMouseEnter={(e) =>
-                                ((
-                                    e.currentTarget as HTMLElement
-                                ).style.background = "rgba(255, 255, 255, 0.2)")
+                            ((
+                                e.currentTarget as HTMLElement
+                            ).style.background = "rgba(255, 255, 255, 0.2)")
                             }
                             onMouseLeave={(e) =>
-                                ((
-                                    e.currentTarget as HTMLElement
-                                ).style.background = "rgba(255, 255, 255, 0.1)")
+                            ((
+                                e.currentTarget as HTMLElement
+                            ).style.background = "rgba(255, 255, 255, 0.1)")
                             }
                         >
                             {menuOpen ? (
@@ -189,12 +198,12 @@ export default function Navbar() {
                         }}
                         onClick={() => setMenuOpen(false)}
                         onMouseEnter={(e) =>
-                            ((e.currentTarget as HTMLElement).style.background =
-                                "rgba(255, 255, 255, 0.2)")
+                        ((e.currentTarget as HTMLElement).style.background =
+                            "rgba(255, 255, 255, 0.2)")
                         }
                         onMouseLeave={(e) =>
-                            ((e.currentTarget as HTMLElement).style.background =
-                                "rgba(255, 255, 255, 0.1)")
+                        ((e.currentTarget as HTMLElement).style.background =
+                            "rgba(255, 255, 255, 0.1)")
                         }
                     >
                         <X color="white" size={24} />
@@ -337,12 +346,8 @@ export default function Navbar() {
                                     "0 6px 20px rgba(0, 166, 81, 0.4)";
                             }}
                             onMouseLeave={(e) => {
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.transform = "translateY(0)";
-                                (
-                                    e.currentTarget as HTMLElement
-                                ).style.boxShadow =
+                                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                                (e.currentTarget as HTMLElement).style.boxShadow =
                                     "0 4px 14px rgba(0, 166, 81, 0.3)";
                             }}
                         >

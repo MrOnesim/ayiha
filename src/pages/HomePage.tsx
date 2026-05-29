@@ -7,7 +7,6 @@ import {
     Users,
     MapPin,
     TrendingUp,
-    Phone,
     ChevronRight,
     Shield,
     Target,
@@ -16,6 +15,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 function AnimatedCounter({
     end,
@@ -224,7 +224,7 @@ export default function HomePage() {
 
                 <div className="relative z-10 container py-32 text-center">
                     <div
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 animate-fadeInUp"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000"
                         style={{
                             background: "rgba(0,166,81,0.2)",
                             border: "1px solid rgba(0,166,81,0.4)",
@@ -238,30 +238,30 @@ export default function HomePage() {
                                 animation: "pulse-green 2s infinite",
                             }}
                         />
-                        🇧🇯 Premier réseau de relais digitaux du Bénin
+                        {SITE_CONFIG.description}
                     </div>
                     <h1
-                        className="font-poppins font-black mb-6 animate-fadeInUp"
+                        className="font-poppins font-black mb-6 animate-in fade-in slide-in-from-bottom-6 duration-1000"
                         style={{
                             fontSize: "clamp(36px,6vw,72px)",
                             lineHeight: 1.1,
                             color: "white",
-                            animationDelay: "0.1s",
+                            animationDelay: "200ms",
                             letterSpacing: "-0.02em",
                         }}
                     >
                         Boostez votre visibilité
                         <br />
                         <span style={{ color: "#00A651" }}>
-                            partout au Bénin
+                            {SITE_CONFIG.name}
                         </span>
                     </h1>
                     <p
-                        className="text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fadeInUp"
+                        className="text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-in fade-in slide-in-from-bottom-8 duration-1000"
                         style={{
                             color: "rgba(255,255,255,0.85)",
                             lineHeight: 1.7,
-                            animationDelay: "0.2s",
+                            animationDelay: "400ms",
                         }}
                     >
                         AYIHA BOOST BEN/AFRICA connecte vos publications aux 77
@@ -269,8 +269,8 @@ export default function HomePage() {
                         Visibilité maximale, paiements MoMo garantis.
                     </p>
                     <div
-                        className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp"
-                        style={{ animationDelay: "0.3s" }}
+                        className="flex flex-col sm:flex-row gap-4 justify-center animate-in fade-in slide-in-from-bottom-10 duration-1000"
+                        style={{ animationDelay: "600ms" }}
                     >
                         <button
                             onClick={() => handleNavigate("/offers")}
@@ -283,10 +283,8 @@ export default function HomePage() {
                         >
                             Voir nos offres <ArrowRight size={18} />
                         </button>
-                        <a
-                            href="https://wa.me/22901562020"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            onClick={() => handleNavigate("/contact")}
                             className="btn-outline"
                             style={{
                                 padding: "16px 36px",
@@ -294,12 +292,12 @@ export default function HomePage() {
                                 borderRadius: "14px",
                             }}
                         >
-                            <Phone size={18} /> WhatsApp : 0156202023
-                        </a>
+                            <MessageCircle size={18} /> Nous contacter
+                        </button>
                     </div>
                     <div
-                        className="flex flex-wrap justify-center gap-6 mt-12 animate-fadeInUp"
-                        style={{ animationDelay: "0.4s" }}
+                        className="flex flex-wrap justify-center gap-6 mt-12 animate-in fade-in zoom-in-95 duration-1000"
+                        style={{ animationDelay: "800ms" }}
                     >
                         {[
                             "✓ SSL Sécurisé",
@@ -380,7 +378,7 @@ export default function HomePage() {
 
             {/* ─── HOW IT WORKS ─── */}
             <section className="py-24" style={{ background: sectionAlt }}>
-                <div className="container">
+                <div className="container animate-in fade-in slide-in-from-bottom-12 duration-1000">
                     <div className="text-center mb-16">
                         <div className="badge badge-green mb-4">
                             <Zap size={14} /> Comment ça marche
@@ -421,7 +419,7 @@ export default function HomePage() {
                             return (
                                 <div
                                     key={item.step}
-                                    className="card text-center relative"
+                                    className="card text-center relative transition-all duration-300 hover:translate-y-[-8px] hover:shadow-2xl"
                                 >
                                     <div
                                         className="absolute top-4 right-4 font-poppins font-black"
@@ -475,7 +473,7 @@ export default function HomePage() {
 
             {/* ─── PRICING PREVIEW ─── */}
             <section className="py-24" style={{ background: sectionWht }}>
-                <div className="max-w-6xl mx-auto px-4">
+                <div className="max-w-6xl mx-auto px-4 animate-in fade-in slide-in-from-bottom-12 duration-1000">
                     <div className="text-center mb-16">
                         <div className="badge badge-orange mb-4">
                             <Star size={14} /> Nos Formules
@@ -489,15 +487,16 @@ export default function HomePage() {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {plans.map((plan) => (
+                        {plans.map((plan, i) => (
                             <div
                                 key={plan.name}
-                                className="pricing-card"
+                                className="pricing-card transition-all duration-500 hover:scale-[1.02]"
                                 style={{
                                     border: plan.featured
                                         ? `3px solid ${plan.color}`
                                         : `2px solid ${borderCol}`,
                                     position: "relative",
+                                    animationDelay: `${i * 150}ms`,
                                 }}
                             >
                                 {plan.featured && (
@@ -840,8 +839,8 @@ export default function HomePage() {
                                         i === testimonialIdx
                                             ? "#00A651"
                                             : dark
-                                              ? "rgba(255,255,255,0.2)"
-                                              : "#e2e8f0",
+                                                ? "rgba(255,255,255,0.2)"
+                                                : "#e2e8f0",
                                     border: "none",
                                     cursor: "pointer",
                                 }}

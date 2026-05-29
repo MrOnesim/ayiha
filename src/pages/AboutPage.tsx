@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 export default function AboutPage() {
     const { dark } = useTheme();
@@ -36,13 +37,13 @@ export default function AboutPage() {
         {
             icon: Eye,
             title: "Vision",
-            desc: "Devenir la référence du marketing de proximité digitale en Afrique de l'Ouest, en commençant par les 77 communes du Bénin.",
+            desc: `Devenir la référence du marketing de proximité digitale en Afrique de l'Ouest, en commençant par les ${SITE_CONFIG.business.communesCount} communes du Bénin.`,
             color: "#1E3A8A",
         },
         {
             icon: Target,
             title: "Mission",
-            desc: "Connecter les entrepreneurs et PME béninois à un réseau de relais humains actifs pour maximiser leur visibilité digitale locale.",
+            desc: `Connecter les entrepreneurs et PME béninois à un réseau de relais humains actifs pour maximiser leur visibilité digitale locale.`,
             color: "#00A651",
         },
         {
@@ -65,8 +66,8 @@ export default function AboutPage() {
         {
             name: "Équipe des Relais",
             role: "Réseau National",
-            desc: "Plus de 250 relais actifs dans toutes les communes du Bénin. Chaque relais est formé et motivé pour diffuser avec qualité.",
-            initials: "250+",
+            desc: `Plus de ${SITE_CONFIG.business.relaisCount} relais actifs dans toutes les communes du Bénin. Chaque relais est formé et motivé pour diffuser avec qualité.`,
+            initials: SITE_CONFIG.business.relaisCount.toString(),
             color: "#00A651",
             skills: ["Diffusion", "Preuves", "WhatsApp", "Bénin"],
         },
@@ -84,7 +85,7 @@ export default function AboutPage() {
         {
             date: "30 Avril 2026",
             title: "Création officielle",
-            desc: "Fondation d'AYIHA BOOST BEN/AFRICA avec un premier réseau de 50 relais.",
+            desc: `Fondation de ${SITE_CONFIG.name} ${SITE_CONFIG.region} avec un premier réseau de 50 relais.`,
             color: "#00A651",
         },
         {
@@ -176,10 +177,10 @@ export default function AboutPage() {
                             lineHeight: 1.2,
                         }}
                     >
-                        Nous construisons l'avenir du
+                        {SITE_CONFIG.name}
                         <br />
                         <span style={{ color: "#00A651" }}>
-                            marketing digital au Bénin
+                            Au service de votre visibilité
                         </span>
                     </h1>
                     <p
@@ -189,9 +190,9 @@ export default function AboutPage() {
                             lineHeight: 1.7,
                         }}
                     >
-                        AYIHA BOOST BEN/AFRICA est né d'une vision simple :
+                        {SITE_CONFIG.name} {SITE_CONFIG.region} est né d'une vision simple :
                         rendre la visibilité digitale accessible à tous les
-                        entrepreneurs béninois, dans toutes les 77 communes.
+                        entrepreneurs béninois, dans toutes les {SITE_CONFIG.business.communesCount} communes.
                     </p>
                 </div>
             </section>
@@ -263,7 +264,7 @@ export default function AboutPage() {
                                 De Cotonou aux
                                 <br />
                                 <span style={{ color: "#00A651" }}>
-                                    77 communes du Bénin
+                                    {SITE_CONFIG.business.communesCount} communes du Bénin
                                 </span>
                             </h2>
                             <div
@@ -271,7 +272,7 @@ export default function AboutPage() {
                                 style={{ color: t.textMuted, lineHeight: 1.8 }}
                             >
                                 <p>
-                                    AYIHA BOOST BEN/AFRICA est né d'un constat
+                                    {SITE_CONFIG.name} {SITE_CONFIG.region} est né d'un constat
                                     simple : les entreprises béninoises peinent
                                     à se faire voir localement malgré le boom
                                     digital. Les réseaux sociaux coûtent cher,
@@ -285,39 +286,25 @@ export default function AboutPage() {
                                     clients avec authenticité et proximité.
                                 </p>
                                 <p>
-                                    Fondé le 30 avril 2026, AYIHA BOOST a
+                                    Fondé le 30 avril 2026, {SITE_CONFIG.name} a
                                     rapidement construit un réseau de plus de
-                                    250 relais actifs couvrant toutes les 77
+                                    {SITE_CONFIG.business.relaisCount} relais actifs couvrant toutes les {SITE_CONFIG.business.communesCount}
                                     communes. Notre ambition : l'Afrique de
                                     l'Ouest entière.
                                 </p>
                             </div>
                         </div>
                         <div className="space-y-4">
-                            <div
-                                className="rounded-2xl overflow-hidden mb-2"
-                                style={{ height: "200px" }}
-                            >
-                                <img
-                                    src="/images/team-benin.jpg"
-                                    alt="Équipe AYIHA BOOST"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                    }}
-                                />
-                            </div>
                             {[
                                 {
                                     icon: Users,
-                                    label: "250+ relais actifs",
+                                    label: `${SITE_CONFIG.business.relaisCount} relais actifs`,
                                     value: "et en croissance chaque semaine",
                                     color: "#00A651",
                                 },
                                 {
                                     icon: MapPin,
-                                    label: "77 communes couvertes",
+                                    label: `${SITE_CONFIG.business.communesCount} communes couvertes`,
                                     value: "présence dans tout le Bénin",
                                     color: "#1E3A8A",
                                 },
@@ -391,7 +378,7 @@ export default function AboutPage() {
                             <Users size={14} /> L'équipe fondatrice
                         </div>
                         <h2 className="section-title mb-4">
-                            Les humains derrière AYIHA BOOST
+                            Les humains derrière {SITE_CONFIG.name}
                         </h2>
                         <p className="section-subtitle max-w-xl mx-auto">
                             Une équipe passionnée, ancrée dans le Bénin, avec
@@ -465,8 +452,7 @@ export default function AboutPage() {
                         </div>
                         <h2 className="section-title mb-4">Notre parcours</h2>
                         <p className="section-subtitle">
-                            Les grandes étapes de construction d'AYIHA BOOST
-                            BEN/AFRICA.
+                            Les grandes étapes de construction de {SITE_CONFIG.name} {SITE_CONFIG.region}.
                         </p>
                     </div>
                     <div className="relative">
@@ -532,12 +518,13 @@ export default function AboutPage() {
                 <div className="container">
                     <div className="text-center mb-14">
                         <h2
-                            className="font-poppins font-black text-white mb-4"
+                            className="font-poppins font-black text-white mb-4 flex items-center justify-center gap-3"
                             style={{ fontSize: "clamp(28px,4vw,42px)" }}
                         >
-                            🇧🇯 Mission :{" "}
+                            <Globe size={40} color="#00A651" />
+                            Mission :{" "}
                             <span style={{ color: "#00A651" }}>
-                                77 communes
+                                {SITE_CONFIG.business.communesCount} communes
                             </span>
                         </h2>
                         <p
@@ -548,14 +535,14 @@ export default function AboutPage() {
                             }}
                         >
                             Notre ambition est d'avoir au moins 1 relais actif
-                            dans chacune des 77 communes du Bénin.
+                            dans chacune des {SITE_CONFIG.business.communesCount} communes du Bénin.
                         </p>
                     </div>
                     <div className="flex flex-wrap gap-3 justify-center">
                         {communes.map((city, i) => (
                             <div
                                 key={city}
-                                className="px-4 py-2 rounded-xl text-sm font-medium"
+                                className="px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-2"
                                 style={{
                                     background:
                                         i % 3 === 0
@@ -572,19 +559,9 @@ export default function AboutPage() {
                                     border: `1px solid ${i % 3 === 0 ? "rgba(0,166,81,0.3)" : i % 3 === 1 ? "rgba(255,107,0,0.3)" : "rgba(255,255,255,0.15)"}`,
                                 }}
                             >
-                                📍 {city}
+                                <MapPin size={14} /> {city}
                             </div>
                         ))}
-                        <div
-                            className="px-4 py-2 rounded-xl text-sm font-medium"
-                            style={{
-                                background: "rgba(255,255,255,0.05)",
-                                color: "rgba(255,255,255,0.5)",
-                                border: "1px solid rgba(255,255,255,0.1)",
-                            }}
-                        >
-                            + 52 autres communes...
-                        </div>
                     </div>
                 </div>
             </section>

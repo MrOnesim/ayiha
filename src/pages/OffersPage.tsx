@@ -9,9 +9,11 @@ import {
     Shield,
     Clock,
     TrendingUp,
+    MessageCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 export default function OffersPage() {
     const { dark } = useTheme();
@@ -186,12 +188,12 @@ export default function OffersPage() {
             <section className="py-20" style={{ background: t.sectionAlt }}>
                 <div className="container">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {plans.map((plan) => {
+                        {plans.map((plan, i) => {
                             const Icon = plan.icon;
                             return (
                                 <div
                                     key={plan.name}
-                                    className="pricing-card"
+                                    className="pricing-card animate-in fade-in zoom-in-95 duration-700"
                                     style={{
                                         border: plan.featured
                                             ? `3px solid ${plan.color}`
@@ -200,6 +202,7 @@ export default function OffersPage() {
                                             ? "scale(1.03)"
                                             : "scale(1)",
                                         position: "relative",
+                                        animationDelay: `${i * 100}ms`,
                                     }}
                                 >
                                     {plan.featured && (
@@ -270,8 +273,8 @@ export default function OffersPage() {
                                                             ? "var(--text-secondary)"
                                                             : "#333"
                                                         : dark
-                                                          ? "var(--text-faint)"
-                                                          : "#bbb",
+                                                            ? "var(--text-faint)"
+                                                            : "#bbb",
                                                 }}
                                             >
                                                 {f.included ? (
@@ -300,7 +303,7 @@ export default function OffersPage() {
                                         ))}
                                     </ul>
                                     <a
-                                        href={`https://wa.me/22901562020?text=Bonjour AYIHA BOOST, je souhaite souscrire à la ${plan.whatsappText}`}
+                                        href={SITE_CONFIG.links.whatsapp(`Bonjour ${SITE_CONFIG.name}, je souhaite souscrire à la ${plan.whatsappText}`)}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-full py-4 rounded-xl font-bold text-sm text-center transition-all block"
@@ -340,7 +343,7 @@ export default function OffersPage() {
 
             {/* What's included */}
             <section className="py-20" style={{ background: t.sectionWht }}>
-                <div className="container">
+                <div className="container animate-in fade-in slide-in-from-bottom-8 duration-1000">
                     <div className="text-center mb-14">
                         <h2 className="section-title mb-4">
                             Ce qui est inclus dans chaque plan
@@ -351,7 +354,7 @@ export default function OffersPage() {
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                        {[
+                        {([
                             {
                                 icon: Shield,
                                 title: "Preuves vérifiables",
@@ -388,12 +391,12 @@ export default function OffersPage() {
                                 desc: "Résiliez à tout moment. Aucun contrat forcé. Nous vous gardons par la qualité.",
                                 color: "#FF6B00",
                             },
-                        ].map((f) => {
+                        ]).map((f, i) => {
                             const Icon = f.icon;
                             return (
                                 <div
                                     key={f.title}
-                                    className="p-6 rounded-2xl transition-all"
+                                    className="p-6 rounded-2xl transition-all duration-300 hover:translate-y-[-4px]"
                                     style={{
                                         background: t.mutedBg,
                                         border: "2px solid transparent",
@@ -515,19 +518,18 @@ export default function OffersPage() {
                         pour démarrer en moins de 24h.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://wa.me/22901562020?text=Bonjour AYIHA BOOST, je veux souscrire à une formule"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-bold text-base py-4 px-8 rounded-xl inline-flex items-center gap-2 justify-center"
+                        <button
+                            onClick={() => handleNavigate("/contact")}
+                            className="font-bold text-base py-4 px-8 rounded-xl inline-flex items-center gap-2 justify-center transition-all hover:-translate-y-1"
                             style={{
                                 background: "white",
                                 color: "#00A651",
-                                textDecoration: "none",
+                                border: "none",
+                                cursor: "pointer",
                             }}
                         >
-                            <Phone size={18} /> Contacter sur WhatsApp
-                        </a>
+                            <MessageCircle size={18} /> Discuter de vos objectifs
+                        </button>
                         <button
                             onClick={() => handleNavigate("/join")}
                             className="font-bold text-base py-4 px-8 rounded-xl"

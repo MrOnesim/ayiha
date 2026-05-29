@@ -2,12 +2,20 @@ import {
     CheckCircle2,
     Star,
     Users,
-    Phone,
+    MessageCircle,
     Gift,
     Award,
     ChevronRight,
+    Trophy,
+    Gem,
+    FileText,
+    ShieldCheck,
+    Key,
+    Coins,
 } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { SITE_CONFIG } from "../constants/siteConfig";
+import JoinForm from "../components/JoinForm";
 
 export default function JoinPage() {
     const { dark } = useTheme();
@@ -31,7 +39,7 @@ export default function JoinPage() {
             gain: "2 000 – 5 000 FCFA",
             color: "#CD7F32",
             bg: dark ? "rgba(205,127,50,0.1)" : "#fdf3e7",
-            icon: "🥉",
+            icon: Trophy,
             perks: [
                 "Accès publications standards",
                 "Paiement mensuel MoMo",
@@ -44,7 +52,7 @@ export default function JoinPage() {
             gain: "5 000 – 12 000 FCFA",
             color: "#9ca3af",
             bg: dark ? "rgba(156,163,175,0.1)" : "#f9fafb",
-            icon: "🥈",
+            icon: Trophy,
             perks: [
                 "Publications prioritaires",
                 "Bonus mensuel 500 FCFA",
@@ -58,7 +66,7 @@ export default function JoinPage() {
             gain: "12 000 – 25 000 FCFA",
             color: "#d97706",
             bg: dark ? "rgba(217,119,6,0.1)" : "#fffbeb",
-            icon: "🥇",
+            icon: Trophy,
             perks: [
                 "Publications VIP",
                 "Bonus mensuel 2 000 FCFA",
@@ -73,7 +81,7 @@ export default function JoinPage() {
             gain: "25 000+ FCFA",
             color: "#1E3A8A",
             bg: dark ? "rgba(30,58,138,0.12)" : "#eff6ff",
-            icon: "💎",
+            icon: Gem,
             perks: [
                 "Toutes les publications",
                 "Bonus illimité",
@@ -107,25 +115,25 @@ export default function JoinPage() {
             step: "01",
             title: "Remplir le formulaire",
             desc: "Cliquez sur le bouton ci-dessous pour accéder au formulaire Google Forms et renseigner vos informations.",
-            icon: "📝",
+            icon: FileText,
         },
         {
             step: "02",
             title: "Vérification (24h)",
             desc: "Notre équipe vérifie votre profil et vous contacte sur WhatsApp dans les 24 heures ouvrées.",
-            icon: "✅",
+            icon: ShieldCheck,
         },
         {
             step: "03",
             title: "Accès à l'espace relais",
             desc: "Vous recevez votre code PIN et accédez à votre tableau de bord pour voir les publications.",
-            icon: "🔑",
+            icon: Key,
         },
         {
             step: "04",
             title: "Publiez & gagnez !",
             desc: "Publiez les contenus clients, envoyez vos screenshots et accumulez des points chaque mois.",
-            icon: "💰",
+            icon: Coins,
         },
     ];
 
@@ -165,7 +173,7 @@ export default function JoinPage() {
                             lineHeight: 1.2,
                         }}
                     >
-                        Devenez Relais et
+                        {SITE_CONFIG.name}
                         <br />
                         <span style={{ color: "#00A651" }}>
                             gagnez chaque mois
@@ -178,38 +186,42 @@ export default function JoinPage() {
                             lineHeight: 1.7,
                         }}
                     >
-                        Rejoignez le réseau AYIHA BOOST et gagnez des revenus
+                        Rejoignez le réseau {SITE_CONFIG.name} et gagnez des revenus
                         supplémentaires en partageant des publications sur vos
                         réseaux sociaux. Simple, flexible, et rémunéré chaque
                         mois.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://forms.google.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            onClick={() => {
+                                document.getElementById("formulaire-inscription")?.scrollIntoView({ behavior: "smooth" });
+                            }}
                             className="btn-primary"
                             style={{
                                 padding: "16px 36px",
                                 fontSize: "16px",
                                 borderRadius: "14px",
+                                cursor: "pointer",
                             }}
                         >
-                            📝 Remplir le formulaire
-                        </a>
+                            📝 S'inscrire maintenant
+                        </button>
                         <a
-                            href="https://wa.me/22901562020?text=Bonjour, je veux devenir relais AYIHA BOOST"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="#etapes"
                             className="font-bold text-base py-4 px-8 rounded-xl inline-flex items-center gap-2 justify-center"
                             style={{
-                                background: "#25D366",
+                                background: "rgba(255,255,255,0.1)",
                                 color: "white",
                                 textDecoration: "none",
                                 borderRadius: "14px",
+                                border: "1px solid rgba(255,255,255,0.2)",
+                            }}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById("etapes")?.scrollIntoView({ behavior: "smooth" });
                             }}
                         >
-                            <Phone size={18} /> WhatsApp
+                            Comment ça marche ?
                         </a>
                     </div>
                 </div>
@@ -301,6 +313,20 @@ export default function JoinPage() {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Registration Form — Internal */}
+            <section id="formulaire-inscription" className="py-20" style={{ background: t.sectionWht }}>
+                <div className="container max-w-3xl mx-auto">
+                    <div className="text-center mb-10">
+                        <h2 className="section-title mb-4">Postulez pour devenir relais</h2>
+                        <p className="section-subtitle">
+                            Complétez ces 3 étapes pour soumettre votre candidature. 
+                            Réponse sous 24 heures.
+                        </p>
+                    </div>
+                    <JoinForm />
                 </div>
             </section>
 
@@ -437,8 +463,8 @@ export default function JoinPage() {
                                 }}
                             >
                                 <div className="text-center mb-5">
-                                    <div className="text-4xl mb-3">
-                                        {level.icon}
+                                    <div className="flex items-center justify-center mb-3">
+                                        <level.icon size={40} color={level.color} />
                                     </div>
                                     <h3
                                         className="font-poppins font-black text-xl"
@@ -485,7 +511,7 @@ export default function JoinPage() {
             </section>
 
             {/* Steps */}
-            <section className="py-20" style={{ background: t.sectionWht }}>
+            <section id="etapes" className="py-20" style={{ background: t.sectionWht }}>
                 <div className="container">
                     <div className="text-center mb-14">
                         <div
@@ -512,8 +538,8 @@ export default function JoinPage() {
                                 className="flex items-start gap-4 p-6 rounded-2xl"
                                 style={{ background: t.mutedBg }}
                             >
-                                <div className="text-3xl flex-shrink-0">
-                                    {step.icon}
+                                <div className="flex-shrink-0 p-3 rounded-xl" style={{ background: "rgba(0,166,81,0.1)" }}>
+                                    <step.icon size={28} color="#00A651" />
                                 </div>
                                 <div>
                                     <div
@@ -561,7 +587,9 @@ export default function JoinPage() {
                     }}
                 />
                 <div className="relative z-10 container">
-                    <div className="text-5xl mb-6">🚀</div>
+                    <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-6">
+                        <Star size={40} color="white" />
+                    </div>
                     <h2
                         className="font-poppins font-black text-white mb-5"
                         style={{
@@ -583,32 +611,35 @@ export default function JoinPage() {
                         dans les 24 heures.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a
-                            href="https://forms.google.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            onClick={() => {
+                                document.getElementById("formulaire-inscription")?.scrollIntoView({ behavior: "smooth" });
+                            }}
                             className="font-bold text-base py-4 px-8 rounded-xl inline-flex items-center gap-2 justify-center"
                             style={{
                                 background: "#00A651",
                                 color: "white",
-                                textDecoration: "none",
+                                border: "none",
+                                cursor: "pointer",
                             }}
                         >
-                            📝 Remplir le formulaire Google Forms
-                        </a>
-                        <a
-                            href="https://wa.me/22901562020?text=Bonjour, je veux rejoindre le réseau AYIHA BOOST comme relais"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            📝 S'inscrire maintenant
+                        </button>
+                        <button
+                            onClick={() => {
+                                window.location.href = "/contact";
+                                window.scrollTo(0, 0);
+                            }}
                             className="font-bold text-base py-4 px-8 rounded-xl inline-flex items-center gap-2 justify-center"
                             style={{
-                                background: "#25D366",
+                                background: "rgba(255,255,255,0.15)",
                                 color: "white",
-                                textDecoration: "none",
+                                border: "2px solid rgba(255,255,255,0.4)",
+                                cursor: "pointer",
                             }}
                         >
-                            <Phone size={18} /> WhatsApp : 0156202023
-                        </a>
+                            <MessageCircle size={18} /> Poser une question
+                        </button>
                     </div>
                     <p
                         className="mt-6 text-sm"

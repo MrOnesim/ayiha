@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { sendContactForm, validateContactForm } from "../services/emailService";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 export default function ContactPage() {
     const { dark } = useTheme();
@@ -74,17 +75,17 @@ export default function ContactPage() {
         {
             icon: Phone,
             title: "WhatsApp",
-            value: "0156202023",
+            value: SITE_CONFIG.contact.phone,
             desc: "Disponible 7j/7 · Réponse rapide",
-            href: "https://wa.me/22901562020",
+            href: SITE_CONFIG.links.whatsapp(),
             color: "#25D366",
         },
         {
             icon: Mail,
             title: "Email",
-            value: "contact@ayihaboost.com",
+            value: SITE_CONFIG.contact.email,
             desc: "Réponse sous 24h ouvrées",
-            href: "mailto:contact@ayihaboost.com",
+            href: `mailto:${SITE_CONFIG.contact.email}`,
             color: "#00A651",
         },
         {
@@ -98,7 +99,7 @@ export default function ContactPage() {
         {
             icon: Clock,
             title: "Horaires",
-            value: "Lun–Sam : 8h – 20h",
+            value: SITE_CONFIG.contact.workingHours,
             desc: "WhatsApp disponible 24/7",
             href: "#",
             color: "#1E3A8A",
@@ -213,7 +214,6 @@ export default function ContactPage() {
             <section className="py-20" style={{ background: t.sectionWht }}>
                 <div className="container">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-                        {/* Form */}
                         <div>
                             <h2 className="section-title mb-2">
                                 Envoyez-nous un message
@@ -252,7 +252,7 @@ export default function ContactPage() {
                                         Merci {form.name} ! Nous avons bien reçu
                                         votre message et vous répondrons dans
                                         les 24h. En urgence, contactez-nous sur
-                                        WhatsApp : 0156202023
+                                        WhatsApp : {SITE_CONFIG.contact.phone}
                                     </p>
                                     <a
                                         href="https://wa.me/22901562020"
@@ -458,7 +458,7 @@ export default function ContactPage() {
                                     7j/7 de 8h à 20h.
                                 </p>
                                 <a
-                                    href="https://wa.me/22901562020?text=Bonjour AYIHA BOOST, j'ai une question"
+                                    href={SITE_CONFIG.links.whatsapp("Bonjour " + SITE_CONFIG.name + ", j'ai une question")}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 font-bold text-sm py-3 px-5 rounded-xl w-full justify-center"
@@ -469,7 +469,7 @@ export default function ContactPage() {
                                         border: "2px solid rgba(255,255,255,0.3)",
                                     }}
                                 >
-                                    📱 0156202023 — Cliquer pour écrire
+                                    📱 {SITE_CONFIG.contact.phone} — Cliquer pour écrire
                                 </a>
                             </div>
 
@@ -574,9 +574,9 @@ export default function ContactPage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+                    </div >
+                </div >
+            </section >
+        </div >
     );
 }

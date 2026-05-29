@@ -1,15 +1,18 @@
-import { Zap, Phone, Mail, MapPin } from "lucide-react";
+import { Zap, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube, Hexagon, Star, Diamond, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 export default function Footer() {
     const { dark } = useTheme();
 
-    const bg = dark ? "#05080f" : "#0d1f5c";
-    const border = dark ? "rgba(255,255,255,0.06)" : "rgba(255,255,255,0.08)";
     const muted = dark ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.65)";
-    const social = ["Facebook", "Instagram", "Twitter", "YouTube"];
-    const letters = ["f", "in", "tw", "▶"];
+    const socialLinks = [
+        { label: "Facebook", icon: Facebook, href: "https://facebook.com" },
+        { label: "Instagram", icon: Instagram, href: "https://instagram.com" },
+        { label: "Twitter", icon: Twitter, href: "https://twitter.com" },
+        { label: "YouTube", icon: Youtube, href: "https://youtube.com" },
+    ];
 
     return (
         <footer className="site-footer">
@@ -35,13 +38,13 @@ export default function Footer() {
                                         lineHeight: 1.1,
                                     }}
                                 >
-                                    AYIHA BOOST
+                                    {SITE_CONFIG.name}
                                 </div>
                                 <div
                                     className="text-xs font-bold tracking-widest"
                                     style={{ color: "#93c5fd" }}
                                 >
-                                    BEN/AFRICA
+                                    {SITE_CONFIG.region}
                                 </div>
                             </div>
                         </div>
@@ -49,21 +52,26 @@ export default function Footer() {
                             className="text-sm leading-relaxed mb-6"
                             style={{ color: muted }}
                         >
-                            Le premier réseau de relais digitaux couvrant les 77
-                            communes du Bénin. Boostez votre présence digitale
-                            avec nous.
+                            {SITE_CONFIG.description}
                         </p>
                         <div className="flex gap-3">
-                            {social.map((label, i) => (
+                            {socialLinks.map((item) => (
                                 <a
-                                    key={label}
-                                    href="#"
-                                    aria-label={label}
-                                    title={label}
+                                    key={item.label}
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={item.label}
+                                    title={item.label}
                                     className="social-badge"
-                                    style={{ textDecoration: "none" }}
+                                    style={{ 
+                                        textDecoration: "none",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}
                                 >
-                                    {letters[i]}
+                                    <item.icon size={16} />
                                 </a>
                             ))}
                         </div>
@@ -84,13 +92,14 @@ export default function Footer() {
                                     <Link
                                         to={item.path}
                                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                        className="text-sm footer-link no-underline"
+                                        className="text-sm footer-link no-underline flex items-center gap-2"
                                         style={{
                                             fontFamily: "Inter, sans-serif",
                                             padding: 0,
                                         }}
                                     >
-                                        → {item.label}
+                                        <ChevronRight size={14} className="opacity-50" />
+                                        {item.label}
                                     </Link>
                                 </li>
                             ))}
@@ -105,35 +114,40 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {[
                                 {
-                                    label: "⬡ Starter — 15 000 FCFA",
+                                    label: "Starter — 15 000 FCFA",
+                                    icon: Hexagon,
                                     color: "#9ca3af",
                                 },
                                 {
-                                    label: "★ Pro — 35 000 FCFA",
+                                    label: "Pro — 35 000 FCFA",
+                                    icon: Star,
                                     color: "#00A651",
                                 },
                                 {
-                                    label: "◆ Premium — 75 000 FCFA",
+                                    label: "Premium — 75 000 FCFA",
+                                    icon: Diamond,
                                     color: "#FF6B00",
                                 },
-                                { label: "→ Espace Relais", color: muted, path: "/relay" },
-                                { label: "→ Espace CEO", color: muted, path: "/ceo" },
+                                { label: "Espace Relais", color: muted, icon: ChevronRight, path: "/relay" },
+                                { label: "Espace CEO", color: muted, icon: ChevronRight, path: "/ceo" },
                             ].map((item) => (
                                 <li key={item.label}>
                                     {item.path ? (
                                         <Link
                                             to={item.path}
                                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                            className="text-sm footer-link no-underline"
+                                            className="text-sm footer-link no-underline flex items-center gap-2"
                                             style={{ color: item.color }}
                                         >
+                                            <item.icon size={14} className="opacity-70" />
                                             {item.label}
                                         </Link>
                                     ) : (
                                         <span
-                                            className="text-sm"
+                                            className="text-sm flex items-center gap-2"
                                             style={{ color: item.color }}
                                         >
+                                            <item.icon size={14} className="opacity-70" />
                                             {item.label}
                                         </span>
                                     )}
@@ -147,23 +161,23 @@ export default function Footer() {
                         <h4 className="font-bold text-base mb-5">Contact</h4>
                         <ul className="space-y-4">
                             <li>
-                                <a
-                                    href="https://wa.me/22901562020"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-start gap-3 text-sm footer-link"
-                                    style={{ textDecoration: "none" }}
-                                >
-                                    <Phone
-                                        size={16}
-                                        style={{
-                                            marginTop: 2,
-                                            color: "#25D366",
-                                            flexShrink: 0,
-                                        }}
-                                    />
-                                    <span>WhatsApp : 0156202023</span>
-                                </a>
+                                    <a
+                                        href={SITE_CONFIG.links.whatsapp()}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-start gap-3 text-sm footer-link"
+                                        style={{ textDecoration: "none" }}
+                                    >
+                                        <Phone
+                                            size={16}
+                                            style={{
+                                                marginTop: 2,
+                                                color: "#25D366",
+                                                flexShrink: 0,
+                                            }}
+                                        />
+                                        <span>WhatsApp : {SITE_CONFIG.contact.phone}</span>
+                                    </a>
                             </li>
                             <li>
                                 <a
@@ -179,7 +193,7 @@ export default function Footer() {
                                             flexShrink: 0,
                                         }}
                                     />
-                                    <span>contact@ayihaboost.com</span>
+                                    <span>{SITE_CONFIG.contact.email}</span>
                                 </a>
                             </li>
                             <li className="flex items-start gap-3 text-sm muted">
@@ -198,20 +212,6 @@ export default function Footer() {
                                 </span>
                             </li>
                         </ul>
-                        <a
-                            href="https://wa.me/22901562020"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold px-4 py-3 rounded-xl"
-                            style={{
-                                background: "#25D366",
-                                color: "white",
-                                textDecoration: "none",
-                                borderRadius: "12px",
-                            }}
-                        >
-                            <Phone size={16} /> WhatsApp maintenant
-                        </a>
                     </div>
                 </div>
             </div>

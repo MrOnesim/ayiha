@@ -14,7 +14,9 @@ import {
     Home,
     ChevronRight,
     AlertCircle,
+    Lock,
 } from "lucide-react";
+import { SITE_CONFIG } from "../constants/siteConfig";
 
 // Mock data
 const mockRelais = {
@@ -168,7 +170,7 @@ export default function RelaySpacePage() {
                             className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4"
                             style={{ background: "rgba(0,166,81,0.1)" }}
                         >
-                            <span className="text-3xl">🔐</span>
+                            <Lock size={32} color="#00A651" />
                         </div>
                         <h1
                             className="font-poppins font-black text-2xl mb-1"
@@ -177,7 +179,7 @@ export default function RelaySpacePage() {
                             Espace Relais
                         </h1>
                         <p className="text-sm" style={{ color: "#888" }}>
-                            AYIHA BOOST BEN/AFRICA
+                            {SITE_CONFIG.name} {SITE_CONFIG.region}
                         </p>
                     </div>
 
