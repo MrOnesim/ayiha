@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
     MessageCircle,
     X,
@@ -11,21 +11,21 @@ import {
     ChevronDown,
     Sparkles,
     Shield,
-} from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
-import { sendMessageToAI, type ChatMessage } from "../ai/geminiService";
-import { isConfidential, QUICK_QUESTIONS } from "../ai/knowledgeBase";
+} from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { sendMessageToAI, type ChatMessage } from '../ai/geminiService';
+import { isConfidential, QUICK_QUESTIONS } from '../ai/knowledgeBase';
 
 // ─── Message unique ───────────────────────────────────────────
 function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
-    const isUser = msg.role === "user";
+    const isUser = msg.role === 'user';
 
     if (msg.isConfidential) {
         return (
             <div className="flex gap-2 justify-start">
                 <div
                     className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
-                    style={{ background: "rgba(239,68,68,0.15)" }}
+                    style={{ background: 'rgba(239,68,68,0.15)' }}
                 >
                     <Shield size={14} color="#ef4444" />
                 </div>
@@ -34,10 +34,10 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
                         className="px-4 py-3 rounded-2xl rounded-tl-sm text-sm"
                         style={{
                             background: dark
-                                ? "rgba(239,68,68,0.1)"
-                                : "#fef2f2",
-                            border: "1px solid rgba(239,68,68,0.3)",
-                            color: dark ? "#fca5a5" : "#b91c1c",
+                                ? 'rgba(239,68,68,0.1)'
+                                : '#fef2f2',
+                            border: '1px solid rgba(239,68,68,0.3)',
+                            color: dark ? '#fca5a5' : '#b91c1c',
                         }}
                     >
                         <div className="flex items-center gap-2 mb-1 font-bold text-xs">
@@ -45,7 +45,7 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
                             INFORMATION CONFIDENTIELLE
                         </div>
                         <p>
-                            🔒 Je ne peux pas répondre à cette question. Elle
+                            Je ne peux pas répondre à cette question. Elle
                             concerne des informations confidentielles d'AYIHA
                             BOOST.
                         </p>
@@ -56,11 +56,11 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
                     </div>
                     <div
                         className="text-xs mt-1 ml-1"
-                        style={{ color: dark ? "var(--text-faint)" : "#aaa" }}
+                        style={{ color: dark ? 'var(--text-faint)' : '#aaa' }}
                     >
-                        {msg.timestamp.toLocaleTimeString("fr-FR", {
-                            hour: "2-digit",
-                            minute: "2-digit",
+                        {msg.timestamp.toLocaleTimeString('fr-FR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
                         })}
                     </div>
                 </div>
@@ -70,15 +70,15 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
 
     return (
         <div
-            className={`flex gap-2 ${isUser ? "flex-row-reverse" : "flex-row"}`}
+            className={`flex gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'}`}
         >
             {/* Avatar */}
             <div
                 className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
                 style={{
                     background: isUser
-                        ? "linear-gradient(135deg,#1E3A8A,#2d4fa0)"
-                        : "linear-gradient(135deg,#00A651,#009045)",
+                        ? 'linear-gradient(135deg,#1E3A8A,#2d4fa0)'
+                        : 'linear-gradient(135deg,#00A651,#009045)',
                 }}
             >
                 {isUser ? (
@@ -90,7 +90,7 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
 
             {/* Bubble */}
             <div
-                className={`max-w-[75%] ${isUser ? "items-end" : "items-start"} flex flex-col`}
+                className={`max-w-[75%] ${isUser ? 'items-end' : 'items-start'} flex flex-col`}
             >
                 <div
                     className="px-4 py-3 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap"
@@ -98,16 +98,16 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
                         isUser
                             ? {
                                   background:
-                                      "linear-gradient(135deg,#00A651,#009045)",
-                                  color: "white",
-                                  borderRadius: "18px 18px 4px 18px",
+                                      'linear-gradient(135deg,#00A651,#009045)',
+                                  color: 'white',
+                                  borderRadius: '18px 18px 4px 18px',
                               }
                             : {
-                                  background: dark ? "var(--bg-card)" : "white",
-                                  color: dark ? "var(--text-primary)" : "#222",
-                                  border: `1px solid ${dark ? "var(--border-color)" : "#eee"}`,
-                                  borderRadius: "18px 18px 18px 4px",
-                                  boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
+                                  background: dark ? 'var(--bg-card)' : 'white',
+                                  color: dark ? 'var(--text-primary)' : '#222',
+                                  border: `1px solid ${dark ? 'var(--border-color)' : '#eee'}`,
+                                  borderRadius: '18px 18px 18px 4px',
+                                  boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
                               }
                     }
                     dangerouslySetInnerHTML={{
@@ -118,11 +118,11 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
                 />
                 <div
                     className="text-xs mt-1 mx-1"
-                    style={{ color: dark ? "var(--text-faint)" : "#bbb" }}
+                    style={{ color: dark ? 'var(--text-faint)' : '#bbb' }}
                 >
-                    {msg.timestamp.toLocaleTimeString("fr-FR", {
-                        hour: "2-digit",
-                        minute: "2-digit",
+                    {msg.timestamp.toLocaleTimeString('fr-FR', {
+                        hour: '2-digit',
+                        minute: '2-digit',
                     })}
                 </div>
             </div>
@@ -133,10 +133,10 @@ function MessageBubble({ msg, dark }: { msg: ChatMessage; dark: boolean }) {
 // Formattage markdown simple
 function formatMessage(text: string): string {
     return text
-        .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-        .replace(/\*(.*?)\*/g, "<em>$1</em>")
-        .replace(/^• /gm, "&bull; ")
-        .replace(/\n/g, "<br/>");
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^• /gm, '&bull; ')
+        .replace(/\n/g, '<br/>');
 }
 
 // ─── Indicateur de frappe ────────────────────────────────────
@@ -146,7 +146,7 @@ function TypingIndicator({ dark }: { dark: boolean }) {
             <div
                 className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{
-                    background: "linear-gradient(135deg,#00A651,#009045)",
+                    background: 'linear-gradient(135deg,#00A651,#009045)',
                 }}
             >
                 <Bot size={13} color="white" />
@@ -154,9 +154,9 @@ function TypingIndicator({ dark }: { dark: boolean }) {
             <div
                 className="px-4 py-3 rounded-2xl rounded-tl-sm flex items-center gap-1"
                 style={{
-                    background: dark ? "var(--bg-card)" : "white",
-                    border: `1px solid ${dark ? "var(--border-color)" : "#eee"}`,
-                    boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
+                    background: dark ? 'var(--bg-card)' : 'white',
+                    border: `1px solid ${dark ? 'var(--border-color)' : '#eee'}`,
+                    boxShadow: '0 1px 6px rgba(0,0,0,0.06)',
                 }}
             >
                 {[0, 1, 2].map((i) => (
@@ -164,7 +164,7 @@ function TypingIndicator({ dark }: { dark: boolean }) {
                         key={i}
                         className="w-2 h-2 rounded-full inline-block"
                         style={{
-                            background: "#00A651",
+                            background: '#00A651',
                             animation: `float ${0.6 + i * 0.15}s ease-in-out ${i * 0.15}s infinite alternate`,
                         }}
                     />
@@ -174,11 +174,11 @@ function TypingIndicator({ dark }: { dark: boolean }) {
     );
 }
 
-const STORAGE_KEY = "ayiha_chat_history";
+const STORAGE_KEY = 'ayiha_chat_history';
 
 const WELCOME_MESSAGE: ChatMessage = {
-    id: "welcome",
-    role: "assistant",
+    id: 'welcome',
+    role: 'assistant',
     content: `Bonjour ! 👋 Je suis **AYIHA AI**, l'assistant intelligent de **AYIHA BOOST BEN/AFRICA**.\n\nJe réponds à toutes vos questions sur notre réseau de relais digitaux. Comment puis-je vous aider aujourd'hui ?`,
     timestamp: new Date(),
 };
@@ -187,8 +187,13 @@ function loadMessages(): ChatMessage[] {
     try {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
-            const parsed = JSON.parse(saved) as Array<ChatMessage & { timestamp: string }>;
-            return parsed.map((m) => ({ ...m, timestamp: new Date(m.timestamp) }));
+            const parsed = JSON.parse(saved) as Array<
+                ChatMessage & { timestamp: string }
+            >;
+            return parsed.map((m) => ({
+                ...m,
+                timestamp: new Date(m.timestamp),
+            }));
         }
     } catch {
         // ignore parse errors
@@ -202,7 +207,7 @@ export default function AIChatbot() {
     const [open, setOpen] = useState(false);
     const [minimized, setMinimized] = useState(false);
     const [messages, setMessages] = useState<ChatMessage[]>(loadMessages);
-    const [input, setInput] = useState("");
+    const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [showQuick, setShowQuick] = useState(messages.length <= 1);
     const [unread, setUnread] = useState(0);
@@ -221,7 +226,7 @@ export default function AIChatbot() {
     // Auto-scroll
     useEffect(() => {
         if (open && !minimized) {
-            messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
         }
     }, [messages, isTyping, open, minimized]);
 
@@ -236,7 +241,7 @@ export default function AIChatbot() {
     useEffect(() => {
         if (!open) {
             const assistantMsgs = messages.filter(
-                (m) => m.role === "assistant",
+                (m) => m.role === 'assistant'
             ).length;
             if (assistantMsgs > 1) setUnread(assistantMsgs - 1);
         } else {
@@ -249,12 +254,12 @@ export default function AIChatbot() {
             const messageText = (text ?? input).trim();
             if (!messageText || isTyping) return;
 
-            setInput("");
+            setInput('');
             setShowQuick(false);
 
             const userMsg: ChatMessage = {
                 id: `user-${Date.now()}`,
-                role: "user",
+                role: 'user',
                 content: messageText,
                 timestamp: new Date(),
             };
@@ -266,8 +271,8 @@ export default function AIChatbot() {
                     userMsg,
                     {
                         id: `conf-${Date.now()}`,
-                        role: "assistant",
-                        content: "",
+                        role: 'assistant',
+                        content: '',
                         timestamp: new Date(),
                         isConfidential: true,
                     },
@@ -284,7 +289,7 @@ export default function AIChatbot() {
                     ...prev,
                     {
                         id: `ai-${Date.now()}`,
-                        role: "assistant",
+                        role: 'assistant',
                         content: response,
                         timestamp: new Date(),
                     },
@@ -294,9 +299,9 @@ export default function AIChatbot() {
                     ...prev,
                     {
                         id: `err-${Date.now()}`,
-                        role: "assistant",
+                        role: 'assistant',
                         content:
-                            "⚠️ Une erreur est survenue. Veuillez réessayer ou contacter notre équipe sur WhatsApp : 0156202023",
+                            '⚠️ Une erreur est survenue. Veuillez réessayer ou contacter notre équipe sur WhatsApp : 0156202023',
                         timestamp: new Date(),
                         isError: true,
                     },
@@ -305,11 +310,11 @@ export default function AIChatbot() {
                 setIsTyping(false);
             }
         },
-        [input, isTyping, messages],
+        [input, isTyping, messages]
     );
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" && !e.shiftKey) {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             sendMessage();
         }
@@ -317,22 +322,26 @@ export default function AIChatbot() {
 
     const clearChat = () => {
         const resetMsg: ChatMessage = {
-            id: "welcome-new",
-            role: "assistant",
+            id: 'welcome-new',
+            role: 'assistant',
             content: `Conversation réinitialisée ! 🔄\n\nBonjour ! Je suis **AYIHA AI**, comment puis-je vous aider ?`,
             timestamp: new Date(),
         };
         setMessages([resetMsg]);
         setShowQuick(true);
-        try { localStorage.removeItem(STORAGE_KEY); } catch { /* ignore */ }
+        try {
+            localStorage.removeItem(STORAGE_KEY);
+        } catch {
+            /* ignore */
+        }
     };
 
     // ── Styles ──
-    const panelBg = dark ? "#181c25" : "#ffffff";
-    const headerBg = dark ? "#0f1117" : "#1E3A8A";
-    const bodyBg = dark ? "#0f1117" : "#f8fafc";
-    const inputBg = dark ? "#1e2433" : "#ffffff";
-    const borderC = dark ? "rgba(255,255,255,0.08)" : "#e5e7eb";
+    const panelBg = dark ? '#181c25' : '#ffffff';
+    const headerBg = dark ? '#0f1117' : '#1E3A8A';
+    const bodyBg = dark ? '#0f1117' : '#f8fafc';
+    const inputBg = dark ? '#1e2433' : '#ffffff';
+    const borderC = dark ? 'rgba(255,255,255,0.08)' : '#e5e7eb';
 
     return (
         <>
@@ -341,20 +350,20 @@ export default function AIChatbot() {
                 <div
                     className="fixed z-50 flex flex-col"
                     style={{
-                        bottom: "96px",
-                        right: "20px",
-                        width: "min(380px, calc(100vw - 32px))",
+                        bottom: '96px',
+                        right: '20px',
+                        width: 'min(380px, calc(100vw - 32px))',
                         height: minimized
-                            ? "auto"
-                            : "min(580px, calc(100vh - 140px))",
+                            ? 'auto'
+                            : 'min(580px, calc(100vh - 140px))',
                         background: panelBg,
-                        borderRadius: "20px",
+                        borderRadius: '20px',
                         boxShadow:
-                            "0 20px 60px rgba(0,0,0,0.25), 0 4px 20px rgba(0,0,0,0.15)",
+                            '0 20px 60px rgba(0,0,0,0.25), 0 4px 20px rgba(0,0,0,0.15)',
                         border: `1px solid ${borderC}`,
-                        animation: "fadeInUp 0.25s ease-out",
-                        overflow: "hidden",
-                        transition: "height 0.3s ease",
+                        animation: 'fadeInUp 0.25s ease-out',
+                        overflow: 'hidden',
+                        transition: 'height 0.3s ease',
                     }}
                 >
                     {/* Header */}
@@ -367,8 +376,8 @@ export default function AIChatbot() {
                                 <div
                                     className="w-9 h-9 rounded-xl flex items-center justify-center"
                                     style={{
-                                        background: "rgba(0,166,81,0.2)",
-                                        border: "2px solid #00A651",
+                                        background: 'rgba(0,166,81,0.2)',
+                                        border: '2px solid #00A651',
                                     }}
                                 >
                                     <Zap
@@ -379,7 +388,7 @@ export default function AIChatbot() {
                                 </div>
                                 <div
                                     className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white"
-                                    style={{ background: "#00A651" }}
+                                    style={{ background: '#00A651' }}
                                 />
                             </div>
                             <div>
@@ -389,14 +398,14 @@ export default function AIChatbot() {
                                 </div>
                                 <div
                                     className="text-xs"
-                                    style={{ color: "rgba(255,255,255,0.6)" }}
+                                    style={{ color: 'rgba(255,255,255,0.6)' }}
                                 >
                                     {isTyping ? (
-                                        <span style={{ color: "#00c960" }}>
+                                        <span style={{ color: '#00c960' }}>
                                             En train d'écrire...
                                         </span>
                                     ) : (
-                                        "Assistant AYIHA BOOST · En ligne"
+                                        'Assistant AYIHA BOOST · En ligne'
                                     )}
                                 </div>
                             </div>
@@ -407,17 +416,17 @@ export default function AIChatbot() {
                                 title="Effacer la conversation"
                                 className="w-7 h-7 rounded-lg flex items-center justify-center transition-all"
                                 style={{
-                                    background: "rgba(255,255,255,0.1)",
-                                    border: "none",
-                                    cursor: "pointer",
+                                    background: 'rgba(255,255,255,0.1)',
+                                    border: 'none',
+                                    cursor: 'pointer',
                                 }}
                                 onMouseEnter={(e) =>
                                     (e.currentTarget.style.background =
-                                        "rgba(255,255,255,0.2)")
+                                        'rgba(255,255,255,0.2)')
                                 }
                                 onMouseLeave={(e) =>
                                     (e.currentTarget.style.background =
-                                        "rgba(255,255,255,0.1)")
+                                        'rgba(255,255,255,0.1)')
                                 }
                             >
                                 <Trash2
@@ -427,12 +436,12 @@ export default function AIChatbot() {
                             </button>
                             <button
                                 onClick={() => setMinimized((m) => !m)}
-                                title={minimized ? "Agrandir" : "Réduire"}
+                                title={minimized ? 'Agrandir' : 'Réduire'}
                                 className="w-7 h-7 rounded-lg flex items-center justify-center transition-all"
                                 style={{
-                                    background: "rgba(255,255,255,0.1)",
-                                    border: "none",
-                                    cursor: "pointer",
+                                    background: 'rgba(255,255,255,0.1)',
+                                    border: 'none',
+                                    cursor: 'pointer',
                                 }}
                             >
                                 <ChevronDown
@@ -440,9 +449,9 @@ export default function AIChatbot() {
                                     color="rgba(255,255,255,0.7)"
                                     style={{
                                         transform: minimized
-                                            ? "rotate(180deg)"
-                                            : "rotate(0deg)",
-                                        transition: "transform 0.3s",
+                                            ? 'rotate(180deg)'
+                                            : 'rotate(0deg)',
+                                        transition: 'transform 0.3s',
                                     }}
                                 />
                             </button>
@@ -451,17 +460,17 @@ export default function AIChatbot() {
                                 title="Fermer"
                                 className="w-7 h-7 rounded-lg flex items-center justify-center transition-all"
                                 style={{
-                                    background: "rgba(255,255,255,0.1)",
-                                    border: "none",
-                                    cursor: "pointer",
+                                    background: 'rgba(255,255,255,0.1)',
+                                    border: 'none',
+                                    cursor: 'pointer',
                                 }}
                                 onMouseEnter={(e) =>
                                     (e.currentTarget.style.background =
-                                        "rgba(239,68,68,0.3)")
+                                        'rgba(239,68,68,0.3)')
                                 }
                                 onMouseLeave={(e) =>
                                     (e.currentTarget.style.background =
-                                        "rgba(255,255,255,0.1)")
+                                        'rgba(255,255,255,0.1)')
                                 }
                             >
                                 <X size={14} color="rgba(255,255,255,0.7)" />
@@ -495,8 +504,8 @@ export default function AIChatbot() {
                                                 className="text-xs font-semibold"
                                                 style={{
                                                     color: dark
-                                                        ? "var(--text-faint)"
-                                                        : "#aaa",
+                                                        ? 'var(--text-faint)'
+                                                        : '#aaa',
                                                 }}
                                             >
                                                 Questions fréquentes :
@@ -511,23 +520,23 @@ export default function AIChatbot() {
                                                         className="text-xs px-3 py-1.5 rounded-full transition-all"
                                                         style={{
                                                             background: dark
-                                                                ? "rgba(0,166,81,0.1)"
-                                                                : "rgba(0,166,81,0.08)",
-                                                            color: "#00A651",
-                                                            border: "1px solid rgba(0,166,81,0.25)",
-                                                            cursor: "pointer",
+                                                                ? 'rgba(0,166,81,0.1)'
+                                                                : 'rgba(0,166,81,0.08)',
+                                                            color: '#00A651',
+                                                            border: '1px solid rgba(0,166,81,0.25)',
+                                                            cursor: 'pointer',
                                                             fontFamily:
-                                                                "Inter, sans-serif",
+                                                                'Inter, sans-serif',
                                                         }}
                                                         onMouseEnter={(e) =>
                                                             (e.currentTarget.style.background =
-                                                                "rgba(0,166,81,0.18)")
+                                                                'rgba(0,166,81,0.18)')
                                                         }
                                                         onMouseLeave={(e) =>
                                                             (e.currentTarget.style.background =
                                                                 dark
-                                                                    ? "rgba(0,166,81,0.1)"
-                                                                    : "rgba(0,166,81,0.08)")
+                                                                    ? 'rgba(0,166,81,0.1)'
+                                                                    : 'rgba(0,166,81,0.08)')
                                                         }
                                                     >
                                                         {q.label}
@@ -561,22 +570,22 @@ export default function AIChatbot() {
                                         disabled={isTyping}
                                         style={{
                                             flex: 1,
-                                            padding: "10px 14px",
-                                            borderRadius: "12px",
+                                            padding: '10px 14px',
+                                            borderRadius: '12px',
                                             border: `1.5px solid ${borderC}`,
                                             background: inputBg,
                                             color: dark
-                                                ? "var(--text-primary)"
-                                                : "#111",
-                                            fontSize: "13px",
-                                            fontFamily: "Inter, sans-serif",
-                                            outline: "none",
-                                            transition: "border-color 0.2s",
+                                                ? 'var(--text-primary)'
+                                                : '#111',
+                                            fontSize: '13px',
+                                            fontFamily: 'Inter, sans-serif',
+                                            outline: 'none',
+                                            transition: 'border-color 0.2s',
                                             opacity: isTyping ? 0.6 : 1,
                                         }}
                                         onFocus={(e) =>
                                             (e.target.style.borderColor =
-                                                "#00A651")
+                                                '#00A651')
                                         }
                                         onBlur={(e) =>
                                             (e.target.style.borderColor =
@@ -590,29 +599,29 @@ export default function AIChatbot() {
                                         style={{
                                             background:
                                                 input.trim() && !isTyping
-                                                    ? "linear-gradient(135deg,#00A651,#009045)"
+                                                    ? 'linear-gradient(135deg,#00A651,#009045)'
                                                     : dark
-                                                      ? "rgba(255,255,255,0.08)"
-                                                      : "#f0f0f0",
-                                            border: "none",
+                                                      ? 'rgba(255,255,255,0.08)'
+                                                      : '#f0f0f0',
+                                            border: 'none',
                                             cursor:
                                                 input.trim() && !isTyping
-                                                    ? "pointer"
-                                                    : "not-allowed",
+                                                    ? 'pointer'
+                                                    : 'not-allowed',
                                             transform:
                                                 input.trim() && !isTyping
-                                                    ? "scale(1)"
-                                                    : "scale(0.95)",
+                                                    ? 'scale(1)'
+                                                    : 'scale(0.95)',
                                         }}
                                     >
                                         <Send
                                             size={15}
                                             color={
                                                 input.trim() && !isTyping
-                                                    ? "white"
+                                                    ? 'white'
                                                     : dark
-                                                      ? "rgba(255,255,255,0.3)"
-                                                      : "#ccc"
+                                                      ? 'rgba(255,255,255,0.3)'
+                                                      : '#ccc'
                                             }
                                         />
                                     </button>
@@ -622,11 +631,11 @@ export default function AIChatbot() {
                                         className="text-xs"
                                         style={{
                                             color: dark
-                                                ? "rgba(255,255,255,0.2)"
-                                                : "#ccc",
+                                                ? 'rgba(255,255,255,0.2)'
+                                                : '#ccc',
                                         }}
                                     >
-                                        ⚡ Propulsé par Gemini AI · AYIHA BOOST
+                                        Propulsé par Gemini AI · AYIHA BOOST
                                         BEN/AFRICA
                                     </span>
                                 </div>
@@ -644,30 +653,30 @@ export default function AIChatbot() {
                 }}
                 className="fixed z-50 flex items-center justify-center transition-all btn-floating"
                 style={{
-                    bottom: "24px",
-                    right: "24px",
-                    width: "60px",
-                    height: "60px",
-                    borderRadius: "50%",
+                    bottom: '24px',
+                    right: '24px',
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
                     background: open
-                        ? "linear-gradient(135deg,#1E3A8A,#0f2460)"
-                        : "linear-gradient(135deg,#00A651,#009045)",
-                    border: "none",
-                    cursor: "pointer",
+                        ? 'linear-gradient(135deg,#1E3A8A,#0f2460)'
+                        : 'linear-gradient(135deg,#00A651,#009045)',
+                    border: 'none',
+                    cursor: 'pointer',
                     boxShadow: open
-                        ? "0 4px 20px rgba(30,58,138,0.5)"
-                        : "0 4px 20px rgba(0,166,81,0.5)",
+                        ? '0 4px 20px rgba(30,58,138,0.5)'
+                        : '0 4px 20px rgba(0,166,81,0.5)',
                     transform: open
-                        ? "rotate(0deg) scale(1)"
-                        : "rotate(0deg) scale(1)",
-                    transition: "all 0.3s ease",
+                        ? 'rotate(0deg) scale(1)'
+                        : 'rotate(0deg) scale(1)',
+                    transition: 'all 0.3s ease',
                 }}
-                title={open ? "Fermer l'assistant" : "Ouvrir AYIHA AI"}
+                title={open ? "Fermer l'assistant" : 'Ouvrir AYIHA AI'}
                 onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.1)")
+                    (e.currentTarget.style.transform = 'scale(1.1)')
                 }
                 onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
+                    (e.currentTarget.style.transform = 'scale(1)')
                 }
             >
                 {open ? (
@@ -680,7 +689,7 @@ export default function AIChatbot() {
                 {!open && unread > 0 && (
                     <div
                         className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold text-white"
-                        style={{ background: "#FF6B00" }}
+                        style={{ background: '#FF6B00' }}
                     >
                         {unread}
                     </div>
@@ -691,8 +700,8 @@ export default function AIChatbot() {
                     <div
                         className="absolute inset-0 rounded-full"
                         style={{
-                            border: "2px solid #00A651",
-                            animation: "pulse-green 2s infinite",
+                            border: '2px solid #00A651',
+                            animation: 'pulse-green 2s infinite',
                         }}
                     />
                 )}
