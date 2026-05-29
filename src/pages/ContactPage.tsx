@@ -76,7 +76,7 @@ export default function ContactPage() {
             title: 'WhatsApp',
             value: '0156202023',
             desc: 'Disponible 7j/7 · Réponse rapide',
-            href: 'https://wa.me/22901562020',
+            href: 'https://wa.me/2290156202023',
             color: '#25D366',
         },
         {
@@ -255,7 +255,7 @@ export default function ContactPage() {
                                         WhatsApp : 0156202023
                                     </p>
                                     <a
-                                        href="https://wa.me/22901562020"
+                                        href="https://wa.me/2290156202023"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-primary mx-auto"
@@ -458,7 +458,7 @@ export default function ContactPage() {
                                     7j/7 de 8h à 20h.
                                 </p>
                                 <a
-                                    href="https://wa.me/22901562020?text=Bonjour AYIHA BOOST, j'ai une question"
+                                    href="https://wa.me/2290156202023?text=Bonjour AYIHA BOOST, j'ai une question"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 font-bold text-sm py-3 px-5 rounded-xl w-full justify-center"
@@ -469,7 +469,7 @@ export default function ContactPage() {
                                         border: '2px solid rgba(255,255,255,0.3)',
                                     }}
                                 >
-                                    0156202023 — Cliquer pour écrire
+                                    Cliquer pour écrire sur WhatsApp
                                 </a>
                             </div>
 
