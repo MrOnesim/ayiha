@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
     Phone,
     Mail,
@@ -7,18 +7,18 @@ import {
     CheckCircle2,
     Clock,
     MessageCircle,
-} from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
-import { sendContactForm, validateContactForm } from "../services/emailService";
+} from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { sendContactForm, validateContactForm } from '../services/emailService';
 
 export default function ContactPage() {
     const { dark } = useTheme();
     const [form, setForm] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
     });
     const [sent, setSent] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -26,15 +26,15 @@ export default function ContactPage() {
 
     // Theme-aware color variables
     const t = {
-        sectionAlt: dark ? "var(--bg-primary)" : "#F5F7FA",
-        sectionWht: dark ? "var(--bg-secondary)" : "white",
-        cardBg: dark ? "var(--bg-card)" : "white",
-        textPrim: dark ? "var(--text-primary)" : "#111",
-        textMuted: dark ? "var(--text-muted)" : "#666",
-        textFaint: dark ? "var(--text-faint)" : "#888",
-        navy: dark ? "var(--navy)" : "#1E3A8A",
-        mutedBg: dark ? "var(--bg-muted)" : "#F5F7FA",
-        labelColor: dark ? "var(--text-secondary)" : "#333",
+        sectionAlt: dark ? 'var(--bg-primary)' : '#F5F7FA',
+        sectionWht: dark ? 'var(--bg-secondary)' : 'white',
+        cardBg: dark ? 'var(--bg-card)' : 'white',
+        textPrim: dark ? 'var(--text-primary)' : '#111',
+        textMuted: dark ? 'var(--text-muted)' : '#666',
+        textFaint: dark ? 'var(--text-faint)' : '#888',
+        navy: dark ? 'var(--navy)' : '#1E3A8A',
+        mutedBg: dark ? 'var(--bg-muted)' : '#F5F7FA',
+        labelColor: dark ? 'var(--text-secondary)' : '#333',
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 setErrors({ form: result.message });
             }
         } catch {
-            setErrors({ form: "Une erreur est survenue. Veuillez réessayer." });
+            setErrors({ form: 'Une erreur est survenue. Veuillez réessayer.' });
         } finally {
             setLoading(false);
         }
@@ -65,7 +65,7 @@ export default function ContactPage() {
     const handleChange = (
         e: React.ChangeEvent<
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >,
+        >
     ) => {
         setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -73,35 +73,35 @@ export default function ContactPage() {
     const contactMethods = [
         {
             icon: Phone,
-            title: "WhatsApp",
-            value: "0156202023",
-            desc: "Disponible 7j/7 · Réponse rapide",
-            href: "https://wa.me/22901562020",
-            color: "#25D366",
+            title: 'WhatsApp',
+            value: '0156202023',
+            desc: 'Disponible 7j/7 · Réponse rapide',
+            href: 'https://wa.me/22901562020',
+            color: '#25D366',
         },
         {
             icon: Mail,
-            title: "Email",
-            value: "contact@ayihaboost.com",
-            desc: "Réponse sous 24h ouvrées",
-            href: "mailto:contact@ayihaboost.com",
-            color: "#00A651",
+            title: 'Email',
+            value: 'contact@ayihaboost.com',
+            desc: 'Réponse sous 24h ouvrées',
+            href: 'mailto:contact@ayihaboost.com',
+            color: '#00A651',
         },
         {
             icon: MapPin,
-            title: "Localisation",
-            value: "Cotonou, Bénin",
-            desc: "Réseau national · 77 communes",
-            href: "#",
-            color: "#FF6B00",
+            title: 'Localisation',
+            value: 'Cotonou, Bénin',
+            desc: 'Réseau national · 77 communes',
+            href: '#',
+            color: '#FF6B00',
         },
         {
             icon: Clock,
-            title: "Horaires",
-            value: "Lun–Sam : 8h – 20h",
-            desc: "WhatsApp disponible 24/7",
-            href: "#",
-            color: "#1E3A8A",
+            title: 'Horaires',
+            value: 'Lun–Sam : 8h – 20h',
+            desc: 'WhatsApp disponible 24/7',
+            href: '#',
+            color: '#1E3A8A',
         },
     ];
 
@@ -112,17 +112,17 @@ export default function ContactPage() {
                 className="pt-28 pb-16 text-center"
                 style={{
                     background: dark
-                        ? "linear-gradient(135deg,#080c18,#0f1a3a)"
-                        : "linear-gradient(135deg,#1E3A8A,#0f2460)",
+                        ? 'linear-gradient(135deg,#080c18,#0f1a3a)'
+                        : 'linear-gradient(135deg,#1E3A8A,#0f2460)',
                 }}
             >
                 <div className="container">
                     <div
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-6"
                         style={{
-                            background: "rgba(0,166,81,0.2)",
-                            color: "#7ddc9f",
-                            border: "1px solid rgba(0,166,81,0.3)",
+                            background: 'rgba(0,166,81,0.2)',
+                            color: '#7ddc9f',
+                            border: '1px solid rgba(0,166,81,0.3)',
                         }}
                     >
                         <MessageCircle size={14} /> Nous contacter
@@ -130,20 +130,20 @@ export default function ContactPage() {
                     <h1
                         className="font-poppins font-black text-white mb-5"
                         style={{
-                            fontSize: "clamp(32px,5vw,54px)",
+                            fontSize: 'clamp(32px,5vw,54px)',
                             lineHeight: 1.2,
                         }}
                     >
                         Parlons de votre
                         <br />
-                        <span style={{ color: "#00A651" }}>
+                        <span style={{ color: '#00A651' }}>
                             projet ensemble
                         </span>
                     </h1>
                     <p
                         className="text-lg"
                         style={{
-                            color: "rgba(255,255,255,0.75)",
+                            color: 'rgba(255,255,255,0.75)',
                             lineHeight: 1.7,
                         }}
                     >
@@ -165,14 +165,14 @@ export default function ContactPage() {
                                     key={method.title}
                                     href={method.href}
                                     target={
-                                        method.href.startsWith("http")
-                                            ? "_blank"
+                                        method.href.startsWith('http')
+                                            ? '_blank'
                                             : undefined
                                     }
                                     rel="noopener noreferrer"
                                     className="card text-center"
                                     style={{
-                                        textDecoration: "none",
+                                        textDecoration: 'none',
                                         borderTop: `4px solid ${method.color}`,
                                     }}
                                 >
@@ -227,8 +227,8 @@ export default function ContactPage() {
                                 <div
                                     className="p-8 rounded-2xl text-center"
                                     style={{
-                                        background: "rgba(0,166,81,0.08)",
-                                        border: "2px solid rgba(0,166,81,0.2)",
+                                        background: 'rgba(0,166,81,0.08)',
+                                        border: '2px solid rgba(0,166,81,0.2)',
                                     }}
                                 >
                                     <CheckCircle2
@@ -238,7 +238,7 @@ export default function ContactPage() {
                                     />
                                     <h3
                                         className="font-poppins font-bold text-xl mb-3"
-                                        style={{ color: "#00A651" }}
+                                        style={{ color: '#00A651' }}
                                     >
                                         Message envoyé !
                                     </h3>
@@ -259,7 +259,7 @@ export default function ContactPage() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="btn-primary mx-auto"
-                                        style={{ display: "inline-flex" }}
+                                        style={{ display: 'inline-flex' }}
                                     >
                                         <Phone size={16} /> Contacter sur
                                         WhatsApp
@@ -372,7 +372,7 @@ export default function ContactPage() {
                                             rows={5}
                                             placeholder="Dites-nous en quoi nous pouvons vous aider..."
                                             className="input-field"
-                                            style={{ resize: "none" }}
+                                            style={{ resize: 'none' }}
                                         />
                                     </div>
                                     <button
@@ -380,8 +380,8 @@ export default function ContactPage() {
                                         disabled={loading}
                                         className="btn-primary w-full justify-center"
                                         style={{
-                                            padding: "14px 24px",
-                                            fontSize: "15px",
+                                            padding: '14px 24px',
+                                            fontSize: '15px',
                                         }}
                                     >
                                         {loading ? (
@@ -390,9 +390,9 @@ export default function ContactPage() {
                                                     className="w-4 h-4 rounded-full border-2 border-white border-t-transparent"
                                                     style={{
                                                         animation:
-                                                            "spin-slow 0.8s linear infinite",
+                                                            'spin-slow 0.8s linear infinite',
                                                     }}
-                                                />{" "}
+                                                />{' '}
                                                 Envoi en cours...
                                             </>
                                         ) : (
@@ -419,7 +419,7 @@ export default function ContactPage() {
                                 className="p-6 rounded-2xl"
                                 style={{
                                     background:
-                                        "linear-gradient(135deg,#00A651,#005c30)",
+                                        'linear-gradient(135deg,#00A651,#005c30)',
                                 }}
                             >
                                 <div className="flex items-center gap-3 mb-4">
@@ -427,7 +427,7 @@ export default function ContactPage() {
                                         className="w-12 h-12 rounded-xl flex items-center justify-center"
                                         style={{
                                             background:
-                                                "rgba(255,255,255,0.15)",
+                                                'rgba(255,255,255,0.15)',
                                         }}
                                     >
                                         <Phone size={22} color="white" />
@@ -439,7 +439,7 @@ export default function ContactPage() {
                                         <p
                                             className="text-sm"
                                             style={{
-                                                color: "rgba(255,255,255,0.75)",
+                                                color: 'rgba(255,255,255,0.75)',
                                             }}
                                         >
                                             Généralement en moins d'une heure
@@ -449,7 +449,7 @@ export default function ContactPage() {
                                 <p
                                     className="text-sm mb-5"
                                     style={{
-                                        color: "rgba(255,255,255,0.8)",
+                                        color: 'rgba(255,255,255,0.8)',
                                         lineHeight: 1.6,
                                     }}
                                 >
@@ -463,13 +463,13 @@ export default function ContactPage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-2 font-bold text-sm py-3 px-5 rounded-xl w-full justify-center"
                                     style={{
-                                        background: "rgba(255,255,255,0.2)",
-                                        color: "white",
-                                        textDecoration: "none",
-                                        border: "2px solid rgba(255,255,255,0.3)",
+                                        background: 'rgba(255,255,255,0.2)',
+                                        color: 'white',
+                                        textDecoration: 'none',
+                                        border: '2px solid rgba(255,255,255,0.3)',
                                     }}
                                 >
-                                    📱 0156202023 — Cliquer pour écrire
+                                    0156202023 — Cliquer pour écrire
                                 </a>
                             </div>
 
@@ -483,20 +483,20 @@ export default function ContactPage() {
                                 <div className="space-y-4">
                                     {[
                                         {
-                                            q: "Quel est le délai de démarrage ?",
-                                            a: "Votre campagne démarre dans les 24h après confirmation de votre souscription.",
+                                            q: 'Quel est le délai de démarrage ?',
+                                            a: 'Votre campagne démarre dans les 24h après confirmation de votre souscription.',
                                         },
                                         {
-                                            q: "Comment sont vérifiées les publications ?",
-                                            a: "Chaque relais envoie des screenshots horodatés. Notre système détecte les doublons.",
+                                            q: 'Comment sont vérifiées les publications ?',
+                                            a: 'Chaque relais envoie des screenshots horodatés. Notre système détecte les doublons.',
                                         },
                                         {
-                                            q: "Puis-je voir les preuves de publication ?",
-                                            a: "Oui ! Votre rapport mensuel inclut tous les screenshots des publications effectuées.",
+                                            q: 'Puis-je voir les preuves de publication ?',
+                                            a: 'Oui ! Votre rapport mensuel inclut tous les screenshots des publications effectuées.',
                                         },
                                         {
-                                            q: "Où êtes-vous situés ?",
-                                            a: "Notre équipe est basée à Cotonou. Nos relais couvrent les 77 communes du Bénin.",
+                                            q: 'Où êtes-vous situés ?',
+                                            a: 'Notre équipe est basée à Cotonou. Nos relais couvrent les 77 communes du Bénin.',
                                         },
                                     ].map((item) => (
                                         <div
@@ -553,19 +553,19 @@ export default function ContactPage() {
                                 </p>
                                 <div className="flex flex-wrap gap-2 justify-center mt-4">
                                     {[
-                                        "Cotonou",
-                                        "Porto-Novo",
-                                        "Parakou",
-                                        "Bohicon",
-                                        "+ 73 communes",
+                                        'Cotonou',
+                                        'Porto-Novo',
+                                        'Parakou',
+                                        'Bohicon',
+                                        '+ 73 communes',
                                     ].map((city) => (
                                         <span
                                             key={city}
                                             className="px-3 py-1 rounded-full text-xs font-medium"
                                             style={{
                                                 background:
-                                                    "rgba(0,166,81,0.1)",
-                                                color: "#00A651",
+                                                    'rgba(0,166,81,0.1)',
+                                                color: '#00A651',
                                             }}
                                         >
                                             📍 {city}
