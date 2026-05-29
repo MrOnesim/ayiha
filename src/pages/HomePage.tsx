@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from 'react';
 import {
     Zap,
     ArrowRight,
@@ -13,13 +13,13 @@ import {
     Target,
     Clock,
     MessageCircle,
-} from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "../context/ThemeContext";
+} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 function AnimatedCounter({
     end,
-    suffix = "",
+    suffix = '',
 }: {
     end: number;
     suffix?: string;
@@ -46,14 +46,14 @@ function AnimatedCounter({
                     }, stepTime);
                 }
             },
-            { threshold: 0.5 },
+            { threshold: 0.5 }
         );
         if (ref.current) observer.observe(ref.current);
         return () => observer.disconnect();
     }, [end]);
 
     return (
-        <div ref={ref} className="stat-counter" style={{ color: "#00A651" }}>
+        <div ref={ref} className="stat-counter" style={{ color: '#00A651' }}>
             {count.toLocaleString()}
             {suffix}
         </div>
@@ -67,96 +67,96 @@ export default function HomePage() {
 
     const handleNavigate = (path: string) => {
         navigate(path);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const testimonials = [
         {
-            name: "Mariama K.",
-            role: "Relais Cotonou",
+            name: 'Mariama K.',
+            role: 'Relais Cotonou',
             text: "Grâce à AYIHA BOOST, j'ai pu augmenter mes revenus mensuels de 40 000 FCFA en partageant des publications. Simple, rapide et très sérieux !",
             stars: 5,
-            initials: "MK",
-            color: "#00A651",
+            initials: 'MK',
+            color: '#00A651',
         },
         {
-            name: "Kolade A.",
-            role: "Client Pro — Parakou",
+            name: 'Kolade A.',
+            role: 'Client Pro — Parakou',
             text: "Mon entreprise est maintenant visible dans toute la ville. Le réseau de relais d'AYIHA BOOST est incroyable. Je recommande la formule Pro.",
             stars: 5,
-            initials: "KA",
-            color: "#1E3A8A",
+            initials: 'KA',
+            color: '#1E3A8A',
         },
         {
-            name: "Adjovi F.",
-            role: "Relais Abomey",
+            name: 'Adjovi F.',
+            role: 'Relais Abomey',
             text: "Depuis que j'ai rejoint le réseau, chaque mois je reçois mes paiements MoMo sans problème. L'équipe est très réactive sur WhatsApp.",
             stars: 5,
-            initials: "AF",
-            color: "#FF6B00",
+            initials: 'AF',
+            color: '#FF6B00',
         },
     ];
 
     const features = [
         {
             icon: Shield,
-            title: "Sécurisé & Fiable",
-            desc: "Plateforme chiffrée, SSL obligatoire, données protégées à 100%.",
+            title: 'Sécurisé & Fiable',
+            desc: 'Plateforme chiffrée, SSL obligatoire, données protégées à 100%.',
         },
         {
             icon: TrendingUp,
-            title: "Revenus Garantis",
-            desc: "Système de points transparent avec paiements MoMo chaque mois.",
+            title: 'Revenus Garantis',
+            desc: 'Système de points transparent avec paiements MoMo chaque mois.',
         },
         {
             icon: Target,
-            title: "77 Communes",
-            desc: "Réseau national couvrant toutes les communes du Bénin.",
+            title: '77 Communes',
+            desc: 'Réseau national couvrant toutes les communes du Bénin.',
         },
         {
             icon: Clock,
-            title: "Support 24/7",
-            desc: "Équipe disponible sur WhatsApp pour toutes vos questions.",
+            title: 'Support 24/7',
+            desc: 'Équipe disponible sur WhatsApp pour toutes vos questions.',
         },
     ];
 
     const plans = [
         {
-            name: "Starter",
-            price: "15 000",
-            color: "#6b7280",
+            name: 'Starter',
+            price: '15 000',
+            color: '#6b7280',
             features: [
-                "1 publication / semaine",
-                "5 relais assignés",
-                "Rapport mensuel",
-                "Support WhatsApp",
+                '1 publication / semaine',
+                '5 relais assignés',
+                'Rapport mensuel',
+                'Support WhatsApp',
             ],
             featured: false,
         },
         {
-            name: "Pro",
-            price: "35 000",
-            color: "#00A651",
+            name: 'Pro',
+            price: '35 000',
+            color: '#00A651',
             features: [
-                "3 publications / semaine",
-                "20 relais assignés",
-                "Dashboard temps réel",
-                "Support prioritaire",
-                "Boost organique",
+                '3 publications / semaine',
+                '20 relais assignés',
+                'Dashboard temps réel',
+                'Support prioritaire',
+                'Boost organique',
             ],
             featured: true,
         },
         {
-            name: "Premium",
-            price: "75 000",
-            color: "#FF6B00",
+            name: 'Premium',
+            price: '75 000',
+            color: '#FF6B00',
             features: [
-                "Publications illimitées",
-                "50+ relais assignés",
-                "Couverture nationale",
-                "Account manager dédié",
-                "Statistiques avancées",
-                "Priorité absolue",
+                'Publications illimitées',
+                '50+ relais assignés',
+                'Couverture nationale',
+                'Account manager dédié',
+                'Statistiques avancées',
+                'Priorité absolue',
             ],
             featured: false,
         },
@@ -165,17 +165,17 @@ export default function HomePage() {
     useEffect(() => {
         const interval = setInterval(
             () => setTestimonialIdx((i) => (i + 1) % testimonials.length),
-            4500,
+            4500
         );
         return () => clearInterval(interval);
     }, []);
 
-    const cardBg = dark ? "var(--bg-card)" : "white";
-    const sectionAlt = dark ? "var(--bg-primary)" : "#F8FAFC";
-    const sectionWht = dark ? "var(--bg-secondary)" : "white";
-    const textMuted = dark ? "var(--text-muted)" : "#64748b";
-    const textPrim = dark ? "var(--text-primary)" : "#0f172a";
-    const borderCol = dark ? "var(--border-color)" : "#e2e8f0";
+    const cardBg = dark ? 'var(--bg-card)' : 'white';
+    const sectionAlt = dark ? 'var(--bg-primary)' : '#F8FAFC';
+    const sectionWht = dark ? 'var(--bg-secondary)' : 'white';
+    const textMuted = dark ? 'var(--text-muted)' : '#64748b';
+    const textPrim = dark ? 'var(--text-primary)' : '#0f172a';
+    const borderCol = dark ? 'var(--border-color)' : '#e2e8f0';
 
     return (
         <div>
@@ -184,41 +184,41 @@ export default function HomePage() {
                 className="relative min-h-screen flex items-center justify-center overflow-hidden"
                 style={{
                     background: dark
-                        ? "linear-gradient(135deg,#080c18 0%,#0f1a3a 40%,#003d20 100%)"
-                        : "linear-gradient(135deg,#0f2460 0%,#1E3A8A 40%,#00622f 100%)",
+                        ? 'linear-gradient(135deg,#080c18 0%,#0f1a3a 40%,#003d20 100%)'
+                        : 'linear-gradient(135deg,#0f2460 0%,#1E3A8A 40%,#00622f 100%)',
                 }}
             >
                 <div
                     className="absolute inset-0 opacity-20"
                     style={{
                         backgroundImage:
-                            "url(/images/africa-digital-network.jpg)",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
+                            'url(/images/africa-digital-network.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
                     }}
                 />
                 <div
                     className="absolute top-20 right-10 w-96 h-96 rounded-full opacity-10"
                     style={{
-                        background: "#00A651",
-                        filter: "blur(80px)",
-                        animation: "float 6s ease-in-out infinite",
+                        background: '#00A651',
+                        filter: 'blur(80px)',
+                        animation: 'float 6s ease-in-out infinite',
                     }}
                 />
                 <div
                     className="absolute bottom-20 left-10 w-80 h-80 rounded-full opacity-10"
                     style={{
-                        background: "#FF6B00",
-                        filter: "blur(80px)",
-                        animation: "float 8s ease-in-out infinite reverse",
+                        background: '#FF6B00',
+                        filter: 'blur(80px)',
+                        animation: 'float 8s ease-in-out infinite reverse',
                     }}
                 />
                 <div
                     className="absolute inset-0 opacity-5"
                     style={{
                         backgroundImage:
-                            "linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)",
-                        backgroundSize: "50px 50px",
+                            'linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px)',
+                        backgroundSize: '50px 50px',
                     }}
                 />
 
@@ -226,16 +226,16 @@ export default function HomePage() {
                     <div
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-6 animate-fadeInUp"
                         style={{
-                            background: "rgba(0,166,81,0.2)",
-                            border: "1px solid rgba(0,166,81,0.4)",
-                            color: "#7ddc9f",
+                            background: 'rgba(0,166,81,0.2)',
+                            border: '1px solid rgba(0,166,81,0.4)',
+                            color: '#7ddc9f',
                         }}
                     >
                         <div
                             className="w-2 h-2 rounded-full"
                             style={{
-                                background: "#00A651",
-                                animation: "pulse-green 2s infinite",
+                                background: '#00A651',
+                                animation: 'pulse-green 2s infinite',
                             }}
                         />
                         🇧🇯 Premier réseau de relais digitaux du Bénin
@@ -243,25 +243,25 @@ export default function HomePage() {
                     <h1
                         className="font-poppins font-black mb-6 animate-fadeInUp"
                         style={{
-                            fontSize: "clamp(36px,6vw,72px)",
+                            fontSize: 'clamp(36px,6vw,72px)',
                             lineHeight: 1.1,
-                            color: "white",
-                            animationDelay: "0.1s",
-                            letterSpacing: "-0.02em",
+                            color: 'white',
+                            animationDelay: '0.1s',
+                            letterSpacing: '-0.02em',
                         }}
                     >
                         Boostez votre visibilité
                         <br />
-                        <span style={{ color: "#00A651" }}>
+                        <span style={{ color: '#00A651' }}>
                             partout au Bénin
                         </span>
                     </h1>
                     <p
                         className="text-lg md:text-xl max-w-2xl mx-auto mb-10 animate-fadeInUp"
                         style={{
-                            color: "rgba(255,255,255,0.85)",
+                            color: 'rgba(255,255,255,0.85)',
                             lineHeight: 1.7,
-                            animationDelay: "0.2s",
+                            animationDelay: '0.2s',
                         }}
                     >
                         AYIHA BOOST BEN/AFRICA connecte vos publications aux 77
@@ -270,15 +270,15 @@ export default function HomePage() {
                     </p>
                     <div
                         className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp"
-                        style={{ animationDelay: "0.3s" }}
+                        style={{ animationDelay: '0.3s' }}
                     >
                         <button
-                            onClick={() => handleNavigate("/offers")}
+                            onClick={() => handleNavigate('/offers')}
                             className="btn-primary"
                             style={{
-                                padding: "16px 36px",
-                                fontSize: "16px",
-                                borderRadius: "14px",
+                                padding: '16px 36px',
+                                fontSize: '16px',
+                                borderRadius: '14px',
                             }}
                         >
                             Voir nos offres <ArrowRight size={18} />
@@ -289,9 +289,9 @@ export default function HomePage() {
                             rel="noopener noreferrer"
                             className="btn-outline"
                             style={{
-                                padding: "16px 36px",
-                                fontSize: "16px",
-                                borderRadius: "14px",
+                                padding: '16px 36px',
+                                fontSize: '16px',
+                                borderRadius: '14px',
                             }}
                         >
                             <Phone size={18} /> WhatsApp : 0156202023
@@ -299,18 +299,18 @@ export default function HomePage() {
                     </div>
                     <div
                         className="flex flex-wrap justify-center gap-6 mt-12 animate-fadeInUp"
-                        style={{ animationDelay: "0.4s" }}
+                        style={{ animationDelay: '0.4s' }}
                     >
                         {[
-                            "✓ SSL Sécurisé",
-                            "✓ Paiements MoMo",
-                            "✓ 77 Communes",
-                            "✓ Support 24/7",
+                            '✓ SSL Sécurisé',
+                            '✓ Paiements MoMo',
+                            '✓ 77 Communes',
+                            '✓ Support 24/7',
                         ].map((b) => (
                             <span
                                 key={b}
                                 className="text-sm font-medium"
-                                style={{ color: "rgba(255,255,255,0.8)" }}
+                                style={{ color: 'rgba(255,255,255,0.8)' }}
                             >
                                 {b}
                             </span>
@@ -320,13 +320,13 @@ export default function HomePage() {
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
                     <div
                         className="w-6 h-10 rounded-full border-2 flex items-start justify-center pt-2"
-                        style={{ borderColor: "rgba(255,255,255,0.3)" }}
+                        style={{ borderColor: 'rgba(255,255,255,0.3)' }}
                     >
                         <div
                             className="w-1.5 h-3 rounded-full"
                             style={{
-                                background: "white",
-                                animation: "float 1.5s ease-in-out infinite",
+                                background: 'white',
+                                animation: 'float 1.5s ease-in-out infinite',
                             }}
                         />
                     </div>
@@ -335,27 +335,27 @@ export default function HomePage() {
 
             {/* ─── STATS ─── */}
             <section
-                style={{ background: dark ? "#0a0f1e" : "#1E3A8A" }}
+                style={{ background: dark ? '#0a0f1e' : '#1E3A8A' }}
                 className="py-20"
             >
                 <div className="container">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
-                            { end: 250, suffix: "+", label: "Relais actifs" },
+                            { end: 250, suffix: '+', label: 'Relais actifs' },
                             {
                                 end: 77,
-                                suffix: "",
-                                label: "Communes couvertes",
+                                suffix: '',
+                                label: 'Communes couvertes',
                             },
                             {
                                 end: 1200,
-                                suffix: "+",
-                                label: "Clients satisfaits",
+                                suffix: '+',
+                                label: 'Clients satisfaits',
                             },
                             {
                                 end: 98,
-                                suffix: "%",
-                                label: "Taux de satisfaction",
+                                suffix: '%',
+                                label: 'Taux de satisfaction',
                             },
                         ].map((s) => (
                             <div
@@ -368,7 +368,7 @@ export default function HomePage() {
                                 />
                                 <div
                                     className="text-sm font-medium"
-                                    style={{ color: "rgba(255,255,255,0.75)" }}
+                                    style={{ color: 'rgba(255,255,255,0.75)' }}
                                 >
                                     {s.label}
                                 </div>
@@ -396,25 +396,25 @@ export default function HomePage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             {
-                                step: "01",
+                                step: '01',
                                 icon: Target,
-                                title: "Choisissez votre formule",
-                                desc: "Sélectionnez parmi nos 3 formules selon votre budget et vos ambitions.",
-                                color: "#1E3A8A",
+                                title: 'Choisissez votre formule',
+                                desc: 'Sélectionnez parmi nos 3 formules selon votre budget et vos ambitions.',
+                                color: '#1E3A8A',
                             },
                             {
-                                step: "02",
+                                step: '02',
                                 icon: Users,
-                                title: "On active votre réseau",
-                                desc: "Nos relais publient votre contenu avec screenshots horodatés comme preuves.",
-                                color: "#00A651",
+                                title: 'On active votre réseau',
+                                desc: 'Nos relais publient votre contenu avec screenshots horodatés comme preuves.',
+                                color: '#00A651',
                             },
                             {
-                                step: "03",
+                                step: '03',
                                 icon: TrendingUp,
-                                title: "Vous décollez",
-                                desc: "Votre visibilité explose, vous recevez un rapport mensuel complet.",
-                                color: "#FF6B00",
+                                title: 'Vous décollez',
+                                desc: 'Votre visibilité explose, vous recevez un rapport mensuel complet.',
+                                color: '#FF6B00',
                             },
                         ].map((item) => {
                             const Icon = item.icon;
@@ -428,7 +428,7 @@ export default function HomePage() {
                                         style={{
                                             color: item.color,
                                             opacity: 0.06,
-                                            fontSize: "72px",
+                                            fontSize: '72px',
                                         }}
                                     >
                                         {item.step}
@@ -451,8 +451,8 @@ export default function HomePage() {
                                         className="font-poppins font-bold text-lg mb-3"
                                         style={{
                                             color: dark
-                                                ? "var(--navy)"
-                                                : "#1E3A8A",
+                                                ? 'var(--navy)'
+                                                : '#1E3A8A',
                                         }}
                                     >
                                         {item.title}
@@ -497,7 +497,7 @@ export default function HomePage() {
                                     border: plan.featured
                                         ? `3px solid ${plan.color}`
                                         : `2px solid ${borderCol}`,
-                                    position: "relative",
+                                    position: 'relative',
                                 }}
                             >
                                 {plan.featured && (
@@ -507,7 +507,7 @@ export default function HomePage() {
                                             style={{
                                                 background: plan.color,
                                                 boxShadow:
-                                                    "0 4px 12px rgba(0,166,81,0.3)",
+                                                    '0 4px 12px rgba(0,166,81,0.3)',
                                             }}
                                         >
                                             ⭐ PLUS POPULAIRE
@@ -543,8 +543,8 @@ export default function HomePage() {
                                             className="flex items-center gap-3 text-sm"
                                             style={{
                                                 color: dark
-                                                    ? "var(--text-secondary)"
-                                                    : "#334155",
+                                                    ? 'var(--text-secondary)'
+                                                    : '#334155',
                                             }}
                                         >
                                             <CheckCircle2
@@ -557,19 +557,19 @@ export default function HomePage() {
                                     ))}
                                 </ul>
                                 <a
-                                    href={`https://wa.me/22901562020?text=Je souhaite souscrire à la formule ${plan.name} (${plan.price} FCFA/mois)`}
+                                    href={`https://wa.me/2290156202023?text=Je souhaite souscrire à la formule ${plan.name} (${plan.price} FCFA/mois)`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full py-3 rounded-xl font-semibold text-sm text-center transition-all block"
                                     style={{
                                         background: plan.featured
                                             ? plan.color
-                                            : "transparent",
+                                            : 'transparent',
                                         color: plan.featured
-                                            ? "white"
+                                            ? 'white'
                                             : plan.color,
                                         border: `2px solid ${plan.color}`,
-                                        textDecoration: "none",
+                                        textDecoration: 'none',
                                     }}
                                 >
                                     Souscrire maintenant →
@@ -579,9 +579,9 @@ export default function HomePage() {
                     </div>
                     <div className="text-center mt-12">
                         <button
-                            onClick={() => handleNavigate("/offers")}
+                            onClick={() => handleNavigate('/offers')}
                             className="btn-primary"
-                            style={{ padding: "14px 36px" }}
+                            style={{ padding: '14px 36px' }}
                         >
                             Voir tous les détails <ChevronRight size={18} />
                         </button>
@@ -598,8 +598,8 @@ export default function HomePage() {
                                 <Shield size={14} /> Pourquoi AYIHA BOOST ?
                             </div>
                             <h2 className="section-title mb-5">
-                                La plateforme{" "}
-                                <span style={{ color: "#00A651" }}>
+                                La plateforme{' '}
+                                <span style={{ color: '#00A651' }}>
                                     la plus fiable
                                 </span>
                                 <br />
@@ -619,15 +619,15 @@ export default function HomePage() {
                                             className="p-5 rounded-2xl"
                                             style={{
                                                 background: cardBg,
-                                                boxShadow: "var(--shadow-card)",
-                                                border: "1px solid var(--border-color)",
+                                                boxShadow: 'var(--shadow-card)',
+                                                border: '1px solid var(--border-color)',
                                             }}
                                         >
                                             <div
                                                 className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
                                                 style={{
                                                     background:
-                                                        "rgba(0,166,81,0.1)",
+                                                        'rgba(0,166,81,0.1)',
                                                 }}
                                             >
                                                 <Icon
@@ -639,8 +639,8 @@ export default function HomePage() {
                                                 className="font-bold text-sm mb-1"
                                                 style={{
                                                     color: dark
-                                                        ? "var(--navy)"
-                                                        : "#1E3A8A",
+                                                        ? 'var(--navy)'
+                                                        : '#1E3A8A',
                                                 }}
                                             >
                                                 {f.title}
@@ -664,14 +664,14 @@ export default function HomePage() {
                                 className="rounded-3xl p-8 relative overflow-hidden"
                                 style={{
                                     background:
-                                        "linear-gradient(135deg,#1E3A8A 0%,#00A651 100%)",
+                                        'linear-gradient(135deg,#1E3A8A 0%,#00A651 100%)',
                                 }}
                             >
                                 <div
                                     className="absolute top-0 right-0 w-48 h-48 rounded-full opacity-10"
                                     style={{
-                                        background: "white",
-                                        transform: "translate(30%,-30%)",
+                                        background: 'white',
+                                        transform: 'translate(30%,-30%)',
                                     }}
                                 />
                                 <h3 className="font-poppins font-bold text-2xl text-white mb-6">
@@ -680,24 +680,24 @@ export default function HomePage() {
                                 <div className="space-y-5">
                                     {[
                                         {
-                                            label: "Couverture nationale",
+                                            label: 'Couverture nationale',
                                             value: 100,
-                                            text: "77/77 communes",
+                                            text: '77/77 communes',
                                         },
                                         {
-                                            label: "Relais actifs recrutés",
+                                            label: 'Relais actifs recrutés',
                                             value: 84,
-                                            text: "250+ relais",
+                                            text: '250+ relais',
                                         },
                                         {
-                                            label: "Clients satisfaits",
+                                            label: 'Clients satisfaits',
                                             value: 96,
-                                            text: "98% satisfaction",
+                                            text: '98% satisfaction',
                                         },
                                         {
-                                            label: "Publications délivrées",
+                                            label: 'Publications délivrées',
                                             value: 78,
-                                            text: "5 000+ publications",
+                                            text: '5 000+ publications',
                                         },
                                     ].map((item) => (
                                         <div key={item.label}>
@@ -707,7 +707,7 @@ export default function HomePage() {
                                                 </span>
                                                 <span
                                                     className="text-sm font-bold"
-                                                    style={{ color: "#a7f3d0" }}
+                                                    style={{ color: '#a7f3d0' }}
                                                 >
                                                     {item.text}
                                                 </span>
@@ -716,7 +716,7 @@ export default function HomePage() {
                                                 className="progress-bar"
                                                 style={{
                                                     background:
-                                                        "rgba(255,255,255,0.2)",
+                                                        'rgba(255,255,255,0.2)',
                                                 }}
                                             >
                                                 <div
@@ -724,7 +724,7 @@ export default function HomePage() {
                                                     style={{
                                                         width: `${item.value}%`,
                                                         background:
-                                                            "linear-gradient(90deg,rgba(255,255,255,0.7),white)",
+                                                            'linear-gradient(90deg,rgba(255,255,255,0.7),white)',
                                                     }}
                                                 />
                                             </div>
@@ -732,12 +732,12 @@ export default function HomePage() {
                                     ))}
                                 </div>
                                 <button
-                                    onClick={() => handleNavigate("/about")}
+                                    onClick={() => handleNavigate('/about')}
                                     className="mt-8 w-full py-3 rounded-xl font-semibold text-sm text-white"
                                     style={{
-                                        background: "rgba(255,255,255,0.15)",
-                                        border: "2px solid rgba(255,255,255,0.3)",
-                                        cursor: "pointer",
+                                        background: 'rgba(255,255,255,0.15)',
+                                        border: '2px solid rgba(255,255,255,0.3)',
+                                        cursor: 'pointer',
                                     }}
                                 >
                                     En savoir plus sur nous →
@@ -771,13 +771,13 @@ export default function HomePage() {
                                 style={{
                                     transform:
                                         i === testimonialIdx
-                                            ? "scale(1.02)"
-                                            : "scale(1)",
+                                            ? 'scale(1.02)'
+                                            : 'scale(1)',
                                     borderTop:
                                         i === testimonialIdx
                                             ? `4px solid ${t.color}`
-                                            : "4px solid transparent",
-                                    transition: "all 0.4s",
+                                            : '4px solid transparent',
+                                    transition: 'all 0.4s',
                                 }}
                             >
                                 <div className="flex gap-1 mb-4">
@@ -816,7 +816,7 @@ export default function HomePage() {
                                         <div
                                             className="text-xs"
                                             style={{
-                                                color: "var(--text-faint)",
+                                                color: 'var(--text-faint)',
                                             }}
                                         >
                                             {t.role}
@@ -834,16 +834,16 @@ export default function HomePage() {
                                 className="rounded-full transition-all"
                                 style={{
                                     width:
-                                        i === testimonialIdx ? "24px" : "8px",
-                                    height: "8px",
+                                        i === testimonialIdx ? '24px' : '8px',
+                                    height: '8px',
                                     background:
                                         i === testimonialIdx
-                                            ? "#00A651"
+                                            ? '#00A651'
                                             : dark
-                                              ? "rgba(255,255,255,0.2)"
-                                              : "#e2e8f0",
-                                    border: "none",
-                                    cursor: "pointer",
+                                              ? 'rgba(255,255,255,0.2)'
+                                              : '#e2e8f0',
+                                    border: 'none',
+                                    cursor: 'pointer',
                                 }}
                             />
                         ))}
@@ -854,20 +854,20 @@ export default function HomePage() {
             {/* ─── JOIN RELAIS CTA ─── */}
             <section
                 className="py-24"
-                style={{ background: dark ? "#0a0f1e" : "#1E3A8A" }}
+                style={{ background: dark ? '#0a0f1e' : '#1E3A8A' }}
             >
                 <div className="max-w-4xl mx-auto px-4 text-center">
                     <div
                         className="badge mb-5"
                         style={{
-                            background: "rgba(0,166,81,0.2)",
-                            color: "#7ddc9f",
-                            display: "inline-flex",
-                            gap: "6px",
-                            alignItems: "center",
-                            padding: "6px 14px",
-                            borderRadius: "100px",
-                            fontSize: "13px",
+                            background: 'rgba(0,166,81,0.2)',
+                            color: '#7ddc9f',
+                            display: 'inline-flex',
+                            gap: '6px',
+                            alignItems: 'center',
+                            padding: '6px 14px',
+                            borderRadius: '100px',
+                            fontSize: '13px',
                             fontWeight: 600,
                         }}
                     >
@@ -876,20 +876,20 @@ export default function HomePage() {
                     <h2
                         className="font-poppins font-black mb-5 text-white"
                         style={{
-                            fontSize: "clamp(28px,4vw,46px)",
+                            fontSize: 'clamp(28px,4vw,46px)',
                             lineHeight: 1.2,
                         }}
                     >
                         Rejoignez le réseau et
                         <br />
-                        <span style={{ color: "#00A651" }}>
+                        <span style={{ color: '#00A651' }}>
                             gagnez chaque mois
                         </span>
                     </h2>
                     <p
                         className="text-lg mb-10 max-w-2xl mx-auto"
                         style={{
-                            color: "rgba(255,255,255,0.8)",
+                            color: 'rgba(255,255,255,0.8)',
                             lineHeight: 1.7,
                         }}
                     >
@@ -899,9 +899,9 @@ export default function HomePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => handleNavigate("/join")}
+                            onClick={() => handleNavigate('/join')}
                             className="btn-primary"
-                            style={{ padding: "16px 36px", fontSize: "16px" }}
+                            style={{ padding: '16px 36px', fontSize: '16px' }}
                         >
                             <Users size={18} /> Rejoindre comme relais
                         </button>
@@ -910,16 +910,16 @@ export default function HomePage() {
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                                background: "#25D366",
-                                color: "white",
-                                padding: "16px 36px",
-                                borderRadius: "12px",
+                                background: '#25D366',
+                                color: 'white',
+                                padding: '16px 36px',
+                                borderRadius: '12px',
                                 fontWeight: 600,
-                                fontSize: "16px",
-                                textDecoration: "none",
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: "8px",
+                                fontSize: '16px',
+                                textDecoration: 'none',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
                             }}
                         >
                             <MessageCircle size={18} /> WhatsApp us
@@ -945,38 +945,38 @@ export default function HomePage() {
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
                         {[
-                            "Cotonou",
-                            "Porto-Novo",
-                            "Parakou",
-                            "Abomey-Calavi",
-                            "Djougou",
-                            "Bohicon",
-                            "Kandi",
-                            "Lokossa",
-                            "Ouidah",
-                            "Natitingou",
-                            "Savè",
-                            "Nikki",
+                            'Cotonou',
+                            'Porto-Novo',
+                            'Parakou',
+                            'Abomey-Calavi',
+                            'Djougou',
+                            'Bohicon',
+                            'Kandi',
+                            'Lokossa',
+                            'Ouidah',
+                            'Natitingou',
+                            'Savè',
+                            'Nikki',
                         ].map((city, i) => (
                             <div
                                 key={city}
                                 className="px-3 py-3 rounded-xl text-center text-sm font-medium"
                                 style={{
                                     background: cardBg,
-                                    color: dark ? "var(--navy)" : "#1E3A8A",
-                                    boxShadow: "var(--shadow-card)",
+                                    color: dark ? 'var(--navy)' : '#1E3A8A',
+                                    boxShadow: 'var(--shadow-card)',
                                     borderLeft:
                                         i < 6
-                                            ? "3px solid #00A651"
-                                            : "3px solid #FF6B00",
+                                            ? '3px solid #00A651'
+                                            : '3px solid #FF6B00',
                                 }}
                             >
                                 <MapPin
                                     size={12}
                                     style={{
-                                        display: "inline",
+                                        display: 'inline',
                                         marginRight: 4,
-                                        color: i < 6 ? "#00A651" : "#FF6B00",
+                                        color: i < 6 ? '#00A651' : '#FF6B00',
                                     }}
                                 />
                                 {city}
@@ -986,7 +986,7 @@ export default function HomePage() {
                     <div className="text-center mt-6">
                         <span
                             className="text-sm font-medium"
-                            style={{ color: "var(--text-faint)" }}
+                            style={{ color: 'var(--text-faint)' }}
                         >
                             + 65 autres communes couvertes dans tout le Bénin
                         </span>
@@ -998,21 +998,21 @@ export default function HomePage() {
             <section
                 className="py-24 text-center relative overflow-hidden"
                 style={{
-                    background: "linear-gradient(135deg,#00A651,#005c30)",
+                    background: 'linear-gradient(135deg,#00A651,#005c30)',
                 }}
             >
                 <div
                     className="absolute inset-0 opacity-10"
                     style={{
                         backgroundImage:
-                            "radial-gradient(circle at 30% 50%,#FF6B00 0%,transparent 50%),radial-gradient(circle at 70% 50%,#1E3A8A 0%,transparent 50%)",
+                            'radial-gradient(circle at 30% 50%,#FF6B00 0%,transparent 50%),radial-gradient(circle at 70% 50%,#1E3A8A 0%,transparent 50%)',
                     }}
                 />
                 <div className="relative z-10 max-w-3xl mx-auto px-4">
                     <h2
                         className="font-poppins font-black text-white mb-5"
                         style={{
-                            fontSize: "clamp(28px,4vw,48px)",
+                            fontSize: 'clamp(28px,4vw,48px)',
                             lineHeight: 1.2,
                         }}
                     >
@@ -1021,7 +1021,7 @@ export default function HomePage() {
                     <p
                         className="text-lg mb-10"
                         style={{
-                            color: "rgba(255,255,255,0.9)",
+                            color: 'rgba(255,255,255,0.9)',
                             lineHeight: 1.7,
                         }}
                     >
@@ -1030,31 +1030,31 @@ export default function HomePage() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button
-                            onClick={() => handleNavigate("/offers")}
+                            onClick={() => handleNavigate('/offers')}
                             className="font-semibold text-base py-4 px-8 rounded-xl"
                             style={{
-                                background: "white",
-                                color: "#00A651",
-                                border: "none",
-                                cursor: "pointer",
+                                background: 'white',
+                                color: '#00A651',
+                                border: 'none',
+                                cursor: 'pointer',
                             }}
                         >
                             Découvrir les offres →
                         </button>
                         <a
-                            href="https://wa.me/22901562020"
+                            href="https://wa.me/2290156202023"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-semibold text-base py-4 px-8 rounded-xl"
                             style={{
-                                background: "rgba(255,255,255,0.15)",
-                                color: "white",
-                                border: "2px solid rgba(255,255,255,0.4)",
-                                textDecoration: "none",
-                                display: "inline-block",
+                                background: 'rgba(255,255,255,0.15)',
+                                color: 'white',
+                                border: '2px solid rgba(255,255,255,0.4)',
+                                textDecoration: 'none',
+                                display: 'inline-block',
                             }}
                         >
-                            📱 0156202023
+                            0156202023
                         </a>
                     </div>
                 </div>
