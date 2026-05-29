@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Zap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -121,7 +122,6 @@ export default function Navbar() {
                     {/* Right side */}
                     <div className="hidden md:flex items-center gap-3">
                         <DarkToggle />
-
                         <Link
                             to="/relay"
                             onClick={handleLinkClick}
@@ -192,7 +192,6 @@ export default function Navbar() {
                             {item.label}
                         </Link>
                     ))}
-
                     <Link
                         to="/relay"
                         onClick={handleLinkClick}
